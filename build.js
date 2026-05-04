@@ -203,17 +203,87 @@ function build() {
 
   // Generate content pages
   if (perspectives.length > 0) {
-    generateContent(perspectives, perspectiveTemplate);
-    console.log(`✅ Built ${perspectives.length} perspectives`);
+    // Only generate English perspectives with perspective template
+    const perspectivesToBuild = perspectives.filter(p => p.language === 'en');
+    perspectivesToBuild.forEach(p => {
+      const filledTemplate = perspectiveTemplate
+        .replace(/{{title}}/g, p.title || 'Untitled')
+        .replace(/{{description}}/g, p.description || '')
+        .replace(/{{slug}}/g, p.slug)
+        .replace(/{{language}}/g, p.language)
+        .replace(/{{content}}/g, p.content)
+        .replace(/{{author}}/g, p.author || 'Staff')
+        .replace(/{{publishedDate}}/g, p.date?.toISOString().split('T')[0] || '')
+        .replace(/{{publishedDateFormatted}}/g, p.date?.toLocaleDateString() || '')
+        .replace(/{{category}}/g, p.category || '')
+        .replace(/{{keywords}}/g, p.keywords || '')
+        .replace(/{{image}}/g, p.image || '')
+        .replace(/{{imageAlt}}/g, p.imageAlt || p.title || '')
+        .replace(/{{imageCaption}}/g, p.imageCaption || '')
+        .replace(/{{authorBio}}/g, p.authorBio || '')
+        .replace(/{{hreflang}}/g, '')
+        .replace(/{{articletags}}/g, '');
+      
+      const contentPath = path.join(DOCS_DIR, 'perspective', p.slug);
+      fs.mkdirSync(contentPath, { recursive: true });
+      fs.writeFileSync(path.join(contentPath, 'index.html'), filledTemplate);
+    });
+    console.log(`✅ Built ${perspectivesToBuild.length} perspectives`);
   }
   
   if (books.length > 0) {
-    generateContent(books, bookTemplate);
+    // Generate all books
+    books.forEach(b => {
+      const filledTemplate = bookTemplate
+        .replace(/{{title}}/g, b.title || 'Untitled')
+        .replace(/{{description}}/g, b.description || '')
+        .replace(/{{slug}}/g, b.slug)
+        .replace(/{{language}}/g, b.language)
+        .replace(/{{content}}/g, b.content)
+        .replace(/{{author}}/g, b.author || 'Staff')
+        .replace(/{{publishedDate}}/g, b.date?.toISOString().split('T')[0] || '')
+        .replace(/{{publishedDateFormatted}}/g, b.date?.toLocaleDateString() || '')
+        .replace(/{{category}}/g, b.category || '')
+        .replace(/{{keywords}}/g, b.keywords || '')
+        .replace(/{{image}}/g, b.image || '')
+        .replace(/{{imageAlt}}/g, b.imageAlt || b.title || '')
+        .replace(/{{imageCaption}}/g, b.imageCaption || '')
+        .replace(/{{authorBio}}/g, b.authorBio || '')
+        .replace(/{{hreflang}}/g, '')
+        .replace(/{{articletags}}/g, '');
+      
+      const contentPath = path.join(DOCS_DIR, 'book', b.slug);
+      fs.mkdirSync(contentPath, { recursive: true });
+      fs.writeFileSync(path.join(contentPath, 'index.html'), filledTemplate);
+    });
     console.log(`✅ Built ${books.length} books`);
   }
   
   if (pages.length > 0) {
-    generateContent(pages, pageTemplate);
+    // Generate all pages
+    pages.forEach(pg => {
+      const filledTemplate = pageTemplate
+        .replace(/{{title}}/g, pg.title || 'Untitled')
+        .replace(/{{description}}/g, pg.description || '')
+        .replace(/{{slug}}/g, pg.slug)
+        .replace(/{{language}}/g, pg.language)
+        .replace(/{{content}}/g, pg.content)
+        .replace(/{{author}}/g, pg.author || 'Staff')
+        .replace(/{{publishedDate}}/g, pg.date?.toISOString().split('T')[0] || '')
+        .replace(/{{publishedDateFormatted}}/g, pg.date?.toLocaleDateString() || '')
+        .replace(/{{category}}/g, pg.category || '')
+        .replace(/{{keywords}}/g, pg.keywords || '')
+        .replace(/{{image}}/g, pg.image || '')
+        .replace(/{{imageAlt}}/g, pg.imageAlt || pg.title || '')
+        .replace(/{{imageCaption}}/g, pg.imageCaption || '')
+        .replace(/{{authorBio}}/g, pg.authorBio || '')
+        .replace(/{{hreflang}}/g, '')
+        .replace(/{{articletags}}/g, '');
+      
+      const contentPath = path.join(DOCS_DIR, 'page', pg.slug);
+      fs.mkdirSync(contentPath, { recursive: true });
+      fs.writeFileSync(path.join(contentPath, 'index.html'), filledTemplate);
+    });
     console.log(`✅ Built ${pages.length} pages`);
   }
 
