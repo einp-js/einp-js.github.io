@@ -1,0 +1,9 @@
+[
+  {
+    "id": "author_001",
+    "name": "Sample Author",
+    "bio": "Author bio",
+    "email": "author@example.com",
+    "image": "/images/authors/author_001.jpg"
+  }
+]

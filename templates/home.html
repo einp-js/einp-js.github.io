@@ -1,59 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Everything in Perspective | Essays on Trends & Context</title>
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="description" content="A magazine exploring trends and global topics with depth, nuance, and historical context.">
-  <meta property="og:title" content="Everything in Perspective">
-  <meta property="og:description" content="Essays on trends, context, and perspective.">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://everythinginperspective.com/">
   
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Georgia', 'Garamond', 'serif'],
-            sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
-          },
-          colors: {
-            primary: '#000000',
-            secondary: '#FFFFFF',
-            accent: '#1a1a1a',
-            light: '#F5F5F5',
-            muted: '#666666',
-            gold: '#D4AF37',
-          },
-        },
-      },
-    }
+  <title>Everything in Perspective | Essays on Trends & Context</title>
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Everything in Perspective">
+  <meta property="og:title" content="Everything in Perspective">
+  <meta property="og:description" content="A magazine exploring trends and global topics with depth, nuance, and historical context.">
+  <meta property="og:url" content="https://everythinginperspective.com/">
+  <meta property="og:locale" content="en_US">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Everything in Perspective">
+  <meta name="twitter:description" content="Essays on trends, context, and perspective.">
+  
+  <!-- RSS Feed -->
+  <link rel="alternate" type="application/rss+xml" title="Everything in Perspective Feed" href="/feed.xml">
+  
+  <!-- Structured Data (Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Everything in Perspective",
+    "url": "https://everythinginperspective.com",
+    "description": "A magazine exploring trends and global topics with depth, nuance, and historical context.",
+    "logo": "https://everythinginperspective.com/images/logo.png",
+    "sameAs": []
+  }
   </script>
-  <style>
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; }
-    h1, h2, h3 { font-family: Georgia, Garamond, serif; font-weight: 400; }
-  </style>
+  
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="/css/theme.css">
+  
+  <!-- Deferred scripts -->
+  <script src="/js/main.js" defer></script>
+  <script src="/js/nav.js" defer></script>
 </head>
 <body class="bg-secondary text-primary">
+  <!-- Navigation Drawer -->
+  <nav class="nav-drawer" id="nav-drawer">
+    <button class="nav-drawer-toggle" id="close-nav" aria-label="Close navigation">&times;</button>
+    <a href="/" class="block text-xl font-serif font-bold mb-8">Everything in Perspective</a>
+    <div class="space-y-4">
+      <a href="/" class="block">Home</a>
+      <a href="/page/faq/" class="block">FAQ</a>
+      <a href="/page/contact-us/" class="block">Contact</a>
+      <a href="/page/privacy-policy/" class="block">Privacy</a>
+      <a href="/page/terms-conditions/" class="block">Terms</a>
+      <a href="/page/cookie-policy/" class="block">Cookies</a>
+    </div>
+  </nav>
+  
   <!-- Header -->
-  <header class="border-b border-accent bg-secondary">
-    <div class="max-w-6xl mx-auto px-6 py-12">
-      <nav class="flex justify-between items-start mb-12">
+  <header class="border-b border-accent bg-secondary sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <div class="flex justify-between items-start">
         <div>
-          <h1 class="text-5xl font-serif font-bold tracking-tight">Everything in Perspective</h1>
-          <p class="text-muted text-sm mt-3">Essays on trends, context & nuance</p>
+          <h1 class="text-2xl sm:text-5xl font-serif font-bold tracking-tight">Everything in Perspective</h1>
+          <p class="text-muted text-xs sm:text-sm mt-3">Essays on trends, context & nuance</p>
         </div>
-        <div class="flex gap-8 text-sm">
+        <div class="hidden lg:flex gap-8 text-sm nav-main">
           <a href="#essays" class="hover:underline">Essays</a>
           <a href="#about" class="hover:underline">About</a>
         </div>
-      </nav>
+        <button class="lg:hidden nav-drawer-toggle" id="toggle-nav" aria-label="Toggle navigation">☰</button>
+      </div>
       
       <!-- Hero Subheading -->
-      <div class="py-8 border-t border-accent">
-        <p class="text-lg text-muted max-w-2xl leading-relaxed">
+      <div class="py-6 sm:py-8 border-t border-accent mt-6 sm:mt-8">
+        <p class="text-base sm:text-lg text-muted max-w-2xl leading-relaxed">
           We explore trending topics by providing historical context, multiple perspectives, and systemic analysis. 
           Most content explains <em>what</em>. We explain <em>why and so what</em>.
         </p>
@@ -62,28 +87,28 @@
   </header>
 
   <!-- Featured Essays -->
-  <main class="max-w-6xl mx-auto px-6 py-20">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20">
     <section id="essays">
-      <h2 class="font-serif text-3xl font-bold mb-12">Latest Essays</h2>
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold mb-8 sm:mb-12">Latest Essays</h2>
       
-      <div class="space-y-12">
+      <div class="space-y-8 sm:space-y-12">
         {{featured}}
       </div>
 
       <!-- View All Link -->
-      <div class="mt-16 pt-12 border-t border-accent text-center">
-        <p class="text-muted text-sm mb-4">More essays coming soon.</p>
+      <div class="mt-12 sm:mt-16 pt-8 sm:pt-12 border-t border-accent text-center">
+        <p class="text-muted text-xs sm:text-sm mb-4">More essays coming soon.</p>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="mt-24 pt-12 border-t border-accent">
-      <h2 class="font-serif text-3xl font-bold mb-8">About</h2>
+    <section id="about" class="mt-16 sm:mt-24 pt-8 sm:pt-12 border-t border-accent">
+      <h2 class="font-serif text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">About</h2>
       
-      <div class="grid grid-cols-2 gap-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12">
         <div>
           <h3 class="font-serif text-lg font-bold mb-4">Our Mission</h3>
-          <p class="text-body text-muted leading-relaxed mb-4">
+          <p class="text-sm sm:text-base text-muted leading-relaxed mb-4">
             In a world of infinite information and trending topics, context is rare. 
             Everything in Perspective exists to provide that missing layer—historical depth, 
             systemic understanding, and nuanced analysis.
@@ -91,7 +116,7 @@
         </div>
         <div>
           <h3 class="font-serif text-lg font-bold mb-4">What We Cover</h3>
-          <ul class="text-muted space-y-2">
+          <ul class="text-sm sm:text-base text-muted space-y-2">
             <li>• Economics & Finance</li>
             <li>• Technology & Society</li>
             <li>• Culture & Trends</li>
@@ -104,36 +129,38 @@
   </main>
 
   <!-- Footer -->
-  <footer class="bg-accent text-secondary mt-24 py-12 border-t border-primary">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-3 gap-8 mb-12">
+  <footer class="bg-accent text-secondary mt-16 sm:mt-24 py-8 sm:py-12 border-t border-primary">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
         <div>
-          <h4 class="font-serif font-bold mb-4">Everything in Perspective</h4>
-          <p class="text-sm text-muted">Essays exploring trends with depth and context.</p>
-        </div>
-        <div>
-          <h4 class="font-serif font-bold mb-4">Resources</h4>
-          <ul class="text-sm space-y-2">
-            <li><a href="/" class="text-secondary hover:underline">Home</a></li>
-            <li><a href="#" class="text-secondary hover:underline">Archive</a></li>
-            <li><a href="#" class="text-secondary hover:underline">RSS</a></li>
+          <h4 class="font-serif font-bold mb-4">Magazine</h4>
+          <ul class="text-xs sm:text-sm space-y-2">
+            <li><a href="/" class="hover:underline">Home</a></li>
+            <li><a href="#" class="hover:underline">Archive</a></li>
+            <li><a href="#" class="hover:underline">RSS</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-serif font-bold mb-4">Connect</h4>
-          <ul class="text-sm space-y-2">
-            <li><a href="#" class="text-secondary hover:underline">Twitter</a></li>
-            <li><a href="#" class="text-secondary hover:underline">Newsletter</a></li>
-            <li><a href="#" class="text-secondary hover:underline">Contact</a></li>
+          <h4 class="font-serif font-bold mb-4">Brand</h4>
+          <ul class="text-xs sm:text-sm space-y-2">
+            <li><a href="/page/faq/" class="hover:underline">FAQ</a></li>
+            <li><a href="#" class="hover:underline">Careers</a></li>
+            <li><a href="/page/contact-us/" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4">Legal</h4>
+          <ul class="text-xs sm:text-sm space-y-2">
+            <li><a href="/page/privacy-policy/" class="hover:underline">Privacy</a></li>
+            <li><a href="/page/terms-conditions/" class="hover:underline">Terms</a></li>
+            <li><a href="/page/cookie-policy/" class="hover:underline">Cookies</a></li>
           </ul>
         </div>
       </div>
-      <div class="border-t border-primary pt-8 text-xs text-muted text-center">
+      <div class="border-t border-primary pt-6 sm:pt-8 text-xs text-center text-secondary">
         <p>&copy; 2026 Everything in Perspective. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
-  <script src="/js/main.js"></script>
 </body>
 </html>
