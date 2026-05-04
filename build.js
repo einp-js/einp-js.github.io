@@ -6,7 +6,7 @@ const { marked } = require('marked');
 const DOCS_DIR = './docs';
 const CONTENT_DIR = './content';
 const TEMPLATES_DIR = './templates';
-const BASE_URL = 'https://everythinginperspective.com';
+const BASE_URL = process.env.BASE_URL || 'https://everythinginperspective.github.io'; // Set via npm run build -- --baseUrl=xxx
 
 // Ensure docs directory exists
 if (!fs.existsSync(DOCS_DIR)) {
@@ -47,14 +47,22 @@ function copyAssets() {
   }
 }
 
-// Copy theme CSS
-function copyThemes() {
+// Copy theme CSS + verification files
+function copyThemesAndFiles() {
   if (fs.existsSync('./themes')) {
     if (!fs.existsSync(path.join(DOCS_DIR, 'css'))) {
       fs.mkdirSync(path.join(DOCS_DIR, 'css'), { recursive: true });
     }
-    fs.copyFileSync(path.join('./themes', 'default.css'), path.join(DOCS_DIR, 'css', 'theme.css'));
+    const themeFile = path.join('./themes', 'default.css');
+    if (fs.existsSync(themeFile)) {
+      fs.copyFileSync(themeFile, path.join(DOCS_DIR, 'css', 'theme.css'));
+    }
   }
+  // Copy Google verification file if exists
+  const googleFiles = fs.readdirSync('./static').filter(f => f.startsWith('google') && f.endsWith('.html'));
+  googleFiles.forEach(file => {
+    fs.copyFileSync(path.join('./static', file), path.join(DOCS_DIR, file));
+  });
 }
 
 // Parse content by type and language
@@ -187,7 +195,7 @@ function build() {
   console.log('🔨 Building site...');
   
   copyAssets();
-  copyThemes();
+  copyThemesAndFiles();
   
   const perspectives = parseContent('perspectives');
   const books = parseContent('books');

@@ -1,0 +1,256 @@
+/* Typography */
+:root {
+  --primary: #000000;
+  --secondary: #FFFFFF;
+  --accent: #1a1a1a;
+  --light: #F5F5F5;
+  --muted: #666666;
+  --gold: #D4AF37;
+  --border: #e0e0e0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: var(--primary);
+  background: var(--secondary);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Georgia, Garamond, serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Responsive Grid: 4 cols desktop, 2 cols mobile */
+.grid-responsive {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Navigation Drawer */
+.nav-drawer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 300px;
+  height: 100vh;
+  background: var(--accent);
+  color: var(--secondary);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding: 2rem 1.5rem;
+  overflow-y: auto;
+}
+
+.nav-drawer.open {
+  transform: translateX(0);
+}
+
+.nav-drawer-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+/* Mobile/Tablet: show drawer toggle */
+@media (max-width: 1023px) {
+  .nav-drawer-toggle {
+    display: block;
+  }
+  
+  .nav-main {
+    display: none;
+  }
+  
+  .nav-main.open {
+    display: block;
+  }
+}
+
+/* Desktop: show nav inline */
+@media (min-width: 1024px) {
+  .nav-drawer {
+    position: static;
+    max-width: none;
+    height: auto;
+    transform: none;
+    background: transparent;
+    color: var(--primary);
+    padding: 0;
+  }
+  
+  .nav-drawer-toggle {
+    display: none;
+  }
+  
+  .nav-main {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+.nav-drawer a, .nav-main a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0.5rem 0;
+  display: block;
+}
+
+.nav-drawer a:hover, .nav-main a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+header {
+  border-bottom: 1px solid var(--accent);
+  background: var(--secondary);
+}
+
+/* Content */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+article {
+  max-width: 720px;
+}
+
+article p {
+  margin-bottom: 1.5rem;
+  line-height: 1.7;
+}
+
+article h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+article h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
+}
+
+article blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: var(--muted);
+}
+
+article ul, article ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+article li {
+  margin-bottom: 0.5rem;
+}
+
+article a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+article img {
+  max-width: 100%;
+  height: auto;
+  margin: 2rem 0;
+}
+
+/* Footer */
+footer {
+  background: var(--accent);
+  color: var(--secondary);
+  margin-top: 6rem;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--primary);
+}
+
+footer h4 {
+  color: var(--secondary);
+}
+
+footer a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Cards */
+.card {
+  background: var(--light);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.card a {
+  color: var(--primary);
+}
+
+/* Responsive utilities */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  main {
+    padding: 1.5rem 1rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+  }
+}
