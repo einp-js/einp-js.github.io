@@ -6,6 +6,7 @@ const { marked } = require('marked');
 const DOCS_DIR = './docs';
 const CONTENT_DIR = './content';
 const TEMPLATES_DIR = './templates';
+const BASE_URL = 'https://everythinginperspective.com';
 
 // Ensure docs directory exists
 if (!fs.existsSync(DOCS_DIR)) {
@@ -20,9 +21,14 @@ if (!fs.existsSync(DOCS_DIR)) {
 });
 
 // Load templates
-const layoutTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'layout.html'), 'utf-8');
-const articleTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'article.html'), 'utf-8');
+const perspectiveTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'perspective.html'), 'utf-8');
+const bookTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'book.html'), 'utf-8');
+const pageTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'page.html'), 'utf-8');
 const homeTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'home.html'), 'utf-8');
+
+// Load languages
+const languages = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'languages', 'languages.json'), 'utf-8'));
+const languageCodes = languages.map(l => l.code);
 
 // Copy static assets
 function copyAssets() {
@@ -41,81 +47,139 @@ function copyAssets() {
   }
 }
 
-// Parse all articles
-function parseArticles() {
-  const articlesDir = path.join(CONTENT_DIR, 'articles');
-  const articles = [];
+// Copy theme CSS
+function copyThemes() {
+  if (fs.existsSync('./themes')) {
+    if (!fs.existsSync(path.join(DOCS_DIR, 'css'))) {
+      fs.mkdirSync(path.join(DOCS_DIR, 'css'), { recursive: true });
+    }
+    fs.copyFileSync(path.join('./themes', 'default.css'), path.join(DOCS_DIR, 'css', 'theme.css'));
+  }
+}
 
-  if (!fs.existsSync(articlesDir)) return articles;
+// Parse content by type and language
+function parseContent(contentType) {
+  const contentDir = path.join(CONTENT_DIR, contentType);
+  const items = [];
 
-  fs.readdirSync(articlesDir).forEach(file => {
+  if (!fs.existsSync(contentDir)) return items;
+
+  fs.readdirSync(contentDir).forEach(file => {
     if (file.endsWith('.md')) {
-      const content = fs.readFileSync(path.join(articlesDir, file), 'utf-8');
+      const content = fs.readFileSync(path.join(contentDir, file), 'utf-8');
       const { attributes, body } = fm(content);
-      const slug = file.replace('.md', '');
+      
+      // Extract language from filename (e.g., title.en.md -> en)
+      const match = file.match(/\.(\w+)\.md$/);
+      const language = match ? match[1] : 'en';
+      
+      const slug = file.replace(/\.(\w+)\.md$/, '');
       const html = marked(body);
 
-      articles.push({
+      items.push({
         slug,
+        language,
+        contentType,
         ...attributes,
         content: html,
-        date: new Date(attributes.date),
+        date: attributes.date ? new Date(attributes.date) : new Date(),
       });
     }
   });
 
-  return articles.sort((a, b) => b.date - a.date);
+  return items.sort((a, b) => (b.date || new Date()) - (a.date || new Date()));
 }
 
-// Generate article pages
-function generateArticles(articles) {
-  articles.forEach(article => {
-    const html = articleTemplate
-      .replace('{{title}}', article.title || 'Untitled')
-      .replace('{{author}}', article.author || 'Staff')
-      .replace('{{date}}', article.date.toLocaleDateString())
-      .replace('{{category}}', article.category || 'General')
-      .replace('{{content}}', article.content)
-      .replace('{{description}}', article.description || '');
-
-    const articlePath = path.join(DOCS_DIR, 'perspective', article.slug);
-    fs.mkdirSync(articlePath, { recursive: true });
-    fs.writeFileSync(path.join(articlePath, 'index.html'), html);
+// Generate pages for content
+function generateContent(items, template) {
+  items.forEach(item => {
+    if (item.language === 'en' && item.contentType === 'perspectives') return; // Skip perspectives (use perspective.html)
+    
+    const filledTemplate = template
+      .replace(/{{title}}/g, item.title || 'Untitled')
+      .replace(/{{description}}/g, item.description || '')
+      .replace(/{{slug}}/g, item.slug)
+      .replace(/{{language}}/g, item.language)
+      .replace(/{{content}}/g, item.content)
+      .replace(/{{author}}/g, item.author || 'Staff')
+      .replace(/{{publishedDate}}/g, item.date?.toISOString().split('T')[0] || '')
+      .replace(/{{publishedDateFormatted}}/g, item.date?.toLocaleDateString() || '')
+      .replace(/{{category}}/g, item.category || '')
+      .replace(/{{keywords}}/g, item.keywords || '')
+      .replace(/{{image}}/g, item.image || '')
+      .replace(/{{imageAlt}}/g, item.imageAlt || item.title || '')
+      .replace(/{{imageCaption}}/g, item.imageCaption || '')
+      .replace(/{{authorBio}}/g, item.authorBio || '')
+      .replace(/{{hreflang}}/g, '') // Placeholder for multi-lang support
+      .replace(/{{articletags}}/g, '');
+    
+    const contentPath = path.join(DOCS_DIR, item.contentType, item.slug);
+    fs.mkdirSync(contentPath, { recursive: true });
+    fs.writeFileSync(path.join(contentPath, 'index.html'), filledTemplate);
   });
 }
 
-// Generate homepage with featured articles
-function generateHome(articles) {
-  const featured = articles.slice(0, 3);
-  let featuredHTML = featured.map(a => `
-    <article class="mb-12 pb-12 border-b border-primary">
-      <h3 class="font-serif text-heading mb-2">${a.title}</h3>
-      <p class="text-muted text-caption mb-4">${a.date.toLocaleDateString()} • ${a.category}</p>
-      <p class="text-body mb-4">${a.description}</p>
-      <a href="/perspective/${a.slug}/" class="text-primary font-sans font-bold hover:underline">Read More →</a>
-    </article>
-  `).join('');
+// Generate sitemap with all content
+function generateSitemaps(perspectives, books, pages) {
+  let urls = [];
 
-  const html = homeTemplate.replace('{{featured}}', featuredHTML);
-  fs.writeFileSync(path.join(DOCS_DIR, 'index.html'), html);
-}
+  // Add homepage
+  urls.push({
+    loc: `${BASE_URL}/`,
+    lastmod: new Date().toISOString().split('T')[0],
+    changefreq: 'daily',
+    priority: '1.0',
+  });
 
-// Generate article metadata JSON for client-side search
-function generateMetadata(articles) {
-  const metadata = articles.map(a => ({
-    slug: a.slug,
-    title: a.title,
-    category: a.category,
-    tags: a.tags || [],
-    author: a.author,
-    date: a.date.toISOString(),
-    description: a.description,
-  }));
+  // Add perspectives
+  perspectives.forEach(p => {
+    urls.push({
+      loc: `${BASE_URL}/perspective/${p.slug}/`,
+      lastmod: p.date?.toISOString().split('T')[0] || new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: '0.8',
+    });
+  });
 
-  fs.writeFileSync(
-    path.join(DOCS_DIR, 'js', 'metadata.json'),
-    JSON.stringify(metadata, null, 2)
-  );
+  // Add books
+  books.forEach(b => {
+    urls.push({
+      loc: `${BASE_URL}/book/${b.slug}/`,
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'yearly',
+      priority: '0.7',
+    });
+  });
+
+  // Add pages
+  pages.forEach(p => {
+    urls.push({
+      loc: `${BASE_URL}/page/${p.slug}/`,
+      lastmod: new Date().toISOString().split('T')[0],
+      changefreq: 'monthly',
+      priority: '0.6',
+    });
+  });
+
+  // Generate XML
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.map(u => `  <url>
+    <loc>${u.loc}</loc>
+    <lastmod>${u.lastmod}</lastmod>
+    <changefreq>${u.changefreq}</changefreq>
+    <priority>${u.priority}</priority>
+  </url>`).join('\n')}
+</urlset>`;
+
+  // Write main sitemap + 10 replicas
+  fs.writeFileSync(path.join(DOCS_DIR, 'sitemap.xml'), sitemapXml);
+  for (let i = 1; i <= 10; i++) {
+    fs.writeFileSync(path.join(DOCS_DIR, `sitemap_alt${i}.xml`), sitemapXml);
+  }
+
+  console.log(`📍 Generated sitemap.xml + 10 replicas (${urls.length} URLs)`);
 }
 
 // Main build
@@ -123,16 +187,42 @@ function build() {
   console.log('🔨 Building site...');
   
   copyAssets();
-  const articles = parseArticles();
+  copyThemes();
   
-  if (articles.length > 0) {
-    generateArticles(articles);
-    generateHome(articles);
-    generateMetadata(articles);
-    console.log(`✅ Built ${articles.length} articles`);
-  } else {
-    console.warn('⚠️  No articles found in content/articles/');
+  const perspectives = parseContent('perspectives');
+  const books = parseContent('books');
+  const pages = parseContent('pages');
+
+  // Generate content pages
+  if (perspectives.length > 0) {
+    generateContent(perspectives, perspectiveTemplate);
+    console.log(`✅ Built ${perspectives.length} perspectives`);
   }
+  
+  if (books.length > 0) {
+    generateContent(books, bookTemplate);
+    console.log(`✅ Built ${books.length} books`);
+  }
+  
+  if (pages.length > 0) {
+    generateContent(pages, pageTemplate);
+    console.log(`✅ Built ${pages.length} pages`);
+  }
+
+  // Generate home
+  const featuredHTML = perspectives.slice(0, 3).map(p => `
+    <article class="mb-12 pb-12 border-b border-accent">
+      <h3 class="font-serif text-2xl font-bold mb-2">${p.title}</h3>
+      <p class="text-muted text-sm mb-4">${p.date?.toLocaleDateString() || ''} • ${p.category || 'General'}</p>
+      <p class="text-body mb-4">${p.description || ''}</p>
+      <a href="/perspective/${p.slug}/" class="text-primary font-sans font-bold hover:underline">Read More →</a>
+    </article>
+  `).join('');
+  const homeHtml = homeTemplate.replace('{{featured}}', featuredHTML);
+  fs.writeFileSync(path.join(DOCS_DIR, 'index.html'), homeHtml);
+
+  // Generate sitemaps
+  generateSitemaps(perspectives, books, pages);
 
   console.log('✨ Build complete! Serve from ./docs/');
 }
