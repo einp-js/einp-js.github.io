@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everything in Perspective | Essays on Trends & Context</title>
+  <meta name="description" content="A magazine exploring trends and global topics with depth, nuance, and historical context.">
+  <meta property="og:title" content="Everything in Perspective">
+  <meta property="og:description" content="Essays on trends, context, and perspective.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Georgia', 'Garamond', 'serif'],
+            sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            primary: '#000000',
+            secondary: '#FFFFFF',
+            accent: '#1a1a1a',
+            light: '#F5F5F5',
+            muted: '#666666',
+            gold: '#D4AF37',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; }
+    h1, h2, h3 { font-family: Georgia, Garamond, serif; font-weight: 400; }
+  </style>
+</head>
+<body class="bg-secondary text-primary">
+  <!-- Header -->
+  <header class="border-b border-accent bg-secondary">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <nav class="flex justify-between items-start mb-12">
+        <div>
+          <h1 class="text-5xl font-serif font-bold tracking-tight">Everything in Perspective</h1>
+          <p class="text-muted text-sm mt-3">Essays on trends, context & nuance</p>
+        </div>
+        <div class="flex gap-8 text-sm">
+          <a href="#essays" class="hover:underline">Essays</a>
+          <a href="#about" class="hover:underline">About</a>
+        </div>
+      </nav>
+      
+      <!-- Hero Subheading -->
+      <div class="py-8 border-t border-accent">
+        <p class="text-lg text-muted max-w-2xl leading-relaxed">
+          We explore trending topics by providing historical context, multiple perspectives, and systemic analysis. 
+          Most content explains <em>what</em>. We explain <em>why and so what</em>.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Essays -->
+  <main class="max-w-6xl mx-auto px-6 py-20">
+    <section id="essays">
+      <h2 class="font-serif text-3xl font-bold mb-12">Latest Essays</h2>
+      
+      <div class="space-y-12">
+        {{featured}}
+      </div>
+
+      <!-- View All Link -->
+      <div class="mt-16 pt-12 border-t border-accent text-center">
+        <p class="text-muted text-sm mb-4">More essays coming soon.</p>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="mt-24 pt-12 border-t border-accent">
+      <h2 class="font-serif text-3xl font-bold mb-8">About</h2>
+      
+      <div class="grid grid-cols-2 gap-12">
+        <div>
+          <h3 class="font-serif text-lg font-bold mb-4">Our Mission</h3>
+          <p class="text-body text-muted leading-relaxed mb-4">
+            In a world of infinite information and trending topics, context is rare. 
+            Everything in Perspective exists to provide that missing layer—historical depth, 
+            systemic understanding, and nuanced analysis.
+          </p>
+        </div>
+        <div>
+          <h3 class="font-serif text-lg font-bold mb-4">What We Cover</h3>
+          <ul class="text-muted space-y-2">
+            <li>• Economics & Finance</li>
+            <li>• Technology & Society</li>
+            <li>• Culture & Trends</li>
+            <li>• Geopolitics & History</li>
+            <li>• Psychology & Behavior</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-accent text-secondary mt-24 py-12 border-t border-primary">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-3 gap-8 mb-12">
+        <div>
+          <h4 class="font-serif font-bold mb-4">Everything in Perspective</h4>
+          <p class="text-sm text-muted">Essays exploring trends with depth and context.</p>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4">Resources</h4>
+          <ul class="text-sm space-y-2">
+            <li><a href="/" class="text-secondary hover:underline">Home</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Archive</a></li>
+            <li><a href="#" class="text-secondary hover:underline">RSS</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4">Connect</h4>
+          <ul class="text-sm space-y-2">
+            <li><a href="#" class="text-secondary hover:underline">Twitter</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Newsletter</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-primary pt-8 text-xs text-muted text-center">
+        <p>&copy; 2026 Everything in Perspective. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

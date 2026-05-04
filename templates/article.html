@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} | Everything in Perspective</title>
+  <meta name="description" content="{{description}}">
+  <meta property="og:title" content="{{title}}">
+  <meta property="og:description" content="{{description}}">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="article:published_time" content="{{date}}">
+  <meta name="article:author" content="{{author}}">
+  <meta name="article:section" content="{{category}}">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Georgia', 'Garamond', 'serif'],
+            sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            primary: '#000000',
+            secondary: '#FFFFFF',
+            accent: '#1a1a1a',
+            light: '#F5F5F5',
+            muted: '#666666',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: Georgia, Garamond, serif; font-weight: 400; }
+    .article-content { max-width: 720px; }
+    .article-content p { margin-bottom: 1.5rem; line-height: 1.7; }
+    .article-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; font-size: 1.75rem; }
+    .article-content h3 { margin-top: 2rem; margin-bottom: 0.75rem; font-size: 1.25rem; }
+    .article-content blockquote { border-left: 4px solid #000; padding-left: 1.5rem; margin: 2rem 0; font-style: italic; }
+    .article-content ul, .article-content ol { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+    .article-content li { margin-bottom: 0.5rem; }
+    .article-content a { color: #000; text-decoration: underline; }
+  </style>
+</head>
+<body class="bg-secondary text-primary">
+  <!-- Header -->
+  <header class="border-b border-accent bg-secondary">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <nav class="flex justify-between items-start">
+        <a href="/" class="text-3xl font-serif font-bold">Everything in Perspective</a>
+        <div class="flex gap-8 text-sm">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/#essays" class="hover:underline">Essays</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Article -->
+  <main class="max-w-4xl mx-auto px-6 py-20">
+    <article>
+      <!-- Article Metadata -->
+      <div class="mb-12 pb-8 border-b border-accent">
+        <h1 class="font-serif text-5xl font-bold mb-4 leading-tight">{{title}}</h1>
+        <div class="flex justify-between items-baseline">
+          <div>
+            <p class="text-muted text-sm mb-2">By <span class="font-bold">{{author}}</span></p>
+            <p class="text-muted text-sm">{{date}}</p>
+          </div>
+          <span class="bg-light text-xs px-3 py-1 font-sans">{{category}}</span>
+        </div>
+      </div>
+
+      <!-- Article Content -->
+      <div class="article-content prose prose-lg max-w-none">
+        {{content}}
+      </div>
+
+      <!-- Article Footer -->
+      <div class="mt-16 pt-8 border-t border-accent">
+        <div class="bg-light p-8 rounded">
+          <h3 class="font-serif text-lg font-bold mb-3">About the Author</h3>
+          <p class="text-sm text-muted">{{author}} is a writer exploring context, nuance, and perspective on global trends and ideas.</p>
+        </div>
+      </div>
+
+      <!-- Related Articles (TODO: implement with JS) -->
+      <div class="mt-16">
+        <h2 class="font-serif text-2xl font-bold mb-8">Related Essays</h2>
+        <div id="related-articles" class="grid grid-cols-2 gap-8">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-accent text-secondary mt-24 py-12 border-t border-primary">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-3 gap-8 mb-12">
+        <div>
+          <h4 class="font-serif font-bold mb-4">Everything in Perspective</h4>
+          <p class="text-sm text-muted">Essays on trends, context & nuance.</p>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4">Resources</h4>
+          <ul class="text-sm space-y-2">
+            <li><a href="/" class="text-secondary hover:underline">Home</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Archive</a></li>
+            <li><a href="#" class="text-secondary hover:underline">RSS</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4\">Connect</h4>
+          <ul class="text-sm space-y-2">
+            <li><a href="#" class="text-secondary hover:underline">Twitter</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-primary pt-8 text-xs text-muted text-center">
+        <p>&copy; 2026 Everything in Perspective.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
