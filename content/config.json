@@ -1,0 +1,31 @@
+{
+  "contentTypes": [
+    {
+      "name": "perspectives",
+      "template": "perspective.html",
+      "urlPath": "perspective",
+      "priority": 0.8,
+      "changefreq": "monthly",
+      "featured": true,
+      "filterLanguage": "en"
+    },
+    {
+      "name": "books",
+      "template": "book.html",
+      "urlPath": "book",
+      "priority": 0.7,
+      "changefreq": "yearly",
+      "featured": false,
+      "filterLanguage": null
+    },
+    {
+      "name": "pages",
+      "template": "page.html",
+      "urlPath": "page",
+      "priority": 0.6,
+      "changefreq": "monthly",
+      "featured": false,
+      "filterLanguage": null
+    }
+  ]
+}
