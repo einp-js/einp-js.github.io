@@ -90,16 +90,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Desktop: show nav inline */
+/* Desktop: hide drawer, show inline nav */
 @media (min-width: 1024px) {
   .nav-drawer {
-    position: static;
-    max-width: none;
-    height: auto;
-    transform: none;
-    background: transparent;
-    color: var(--primary);
-    padding: 0;
+    display: none !important;
   }
   
   .nav-drawer-toggle {
@@ -107,7 +101,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .nav-main {
-    display: flex;
+    display: flex !important;
     gap: 2rem;
     align-items: center;
   }
