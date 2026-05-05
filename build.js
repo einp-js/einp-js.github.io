@@ -67,10 +67,20 @@ function copyThemesAndFiles() {
       fs.copyFileSync(themeFile, path.join(DOCS_DIR, 'css', 'theme.css'));
     }
   }
-  // Copy Google verification file if exists
+  // Copy verification & config files (persist across builds)
+  const persistFiles = ['ads.txt'];
   const googleFiles = fs.readdirSync('./static').filter(f => f.startsWith('google') && f.endsWith('.html'));
+  
+  // Copy google verification files
   googleFiles.forEach(file => {
     fs.copyFileSync(path.join('./static', file), path.join(DOCS_DIR, file));
+  });
+  
+  // Copy ads.txt and other persistent files
+  persistFiles.forEach(file => {
+    if (fs.existsSync(path.join('./static', file))) {
+      fs.copyFileSync(path.join('./static', file), path.join(DOCS_DIR, file));
+    }
   });
 }
 
