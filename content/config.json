@@ -10,6 +10,15 @@
       "filterLanguage": "en"
     },
     {
+      "name": "articles",
+      "template": "article.html",
+      "urlPath": "article",
+      "priority": 0.8,
+      "changefreq": "monthly",
+      "featured": false,
+      "filterLanguage": "en"
+    },
+    {
       "name": "books",
       "template": "book.html",
       "urlPath": "book",
