@@ -79,14 +79,14 @@ category: "[Economics|Technology|Culture|Environment|Finance|Psychology]"
 tags: ["tag1", "tag2", "tag3", "tag4", "tag5"]
 description: "160 chars max. Compelling summary of what readers will learn."
 keywords: "primary-keyword, secondary-keyword, tertiary-keyword, long-tail-phrase"
-image: "/images/article-slug-hero.jpg"
+image: "https://cdn-einp.surge.sh/content/articles/article-slug/hero.jpg"
 imageAlt: "Descriptive alt text for primary image"
 imageCaption: "Caption describing what the image shows and why it matters"
 ---
 ```
 
 **Image fields (all required):**
-- `image` — Path to primary hero image (used on home page, article widgets, social share)
+- `image` — CDN URL to primary hero image (format: `https://cdn-einp.surge.sh/content/articles/[slug]/filename.jpg`)
 - `imageAlt` — Accessibility alt text (describes image for screen readers, <125 chars)
 - `imageCaption` — Caption explaining image context (appears below image in article)
 
@@ -149,21 +149,51 @@ imageCaption: "Caption describing what the image shows and why it matters"
    - Helpful for: data visualization, timelines, comparisons, hierarchies
 
 **Image guidelines:**
-- Primary image (hero): 1200x630px minimum (16:9 aspect ratio for social share)
-- Inline images: 800x600px minimum, maintain aspect ratio
+- Primary image (hero): 1200x630px (16:9 aspect ratio for social share, JPG)
+- Inline images: 800x600px minimum (JPG or PNG)
 - Format: JPG for photographs, PNG for infographics/diagrams
 - Alt text: Descriptive, <125 characters, includes key context
 - Captions: Explain what image shows and why it matters for the topic
 - File naming: `article-slug-hero.jpg`, `article-slug-infographic.png` (lowercase, hyphens)
+- Storage: Save to `/Volumes/B87P4/everythinginperspective_nuxt_media/content/articles/[article-slug]/`
+- CDN URL format: `https://cdn-einp.surge.sh/content/articles/[article-slug]/image.jpg`
 
 **Workflow for images:**
 1. Identify where images add value to article
 2. Use Composio to find/generate appropriate images
-3. Save to `/static/images/` with descriptive filename
+3. Save to media folder (see Media Management below) with descriptive filename
 4. Reference in frontmatter (primary image)
 5. Reference inline with markdown image syntax
 6. Include alt text and captions
-7. Build will copy images to `/docs/images/` automatically
+7. Deploy media folder to Surge CDN (see Media Management below)
+
+### Media Management & CDN Deployment
+
+**Media folder structure (NOT git-managed):**
+- Location: `/Volumes/B87P4/everythinginperspective_nuxt_media/`
+- Structure mirrors content: `content/articles/`, `content/perspectives/`, `content/pages/`
+- Each subfolder contains images for that content type
+
+**Image resolutions:**
+- Primary hero images: 1200x630px (16:9 aspect ratio, JPG)
+- Inline images: 800x600px minimum (JPG or PNG)
+- Infographics: As designed (PNG preferred)
+
+**Deployment workflow:**
+1. Generate/source image using Composio
+2. Resize to appropriate resolution (1200x630 for hero, 800x600 for inline)
+3. Save to `/Volumes/B87P4/everythinginperspective_nuxt_media/content/[content-type]/[article-slug]/` folder
+4. Deploy entire media folder to Surge CDN:
+   ```bash
+   surge /Volumes/B87P4/everythinginperspective_nuxt_media/ cdn-einp.surge.sh
+   ```
+5. Reference images in articles with CDN URL: `https://cdn-einp.surge.sh/content/articles/[article-slug]/image.jpg`
+
+**Important:**
+- Media folder (`everythinginperspective_nuxt_media`) is NOT git-managed (add to .gitignore if needed)
+- All images must be deployed to Surge CDN before publishing
+- Image paths in articles must point to `https://cdn-einp.surge.sh/...`
+- Maintain folder structure for organization (mirrors content structure)
 
 ---
 
