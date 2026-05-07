@@ -108,6 +108,13 @@ function generateBreadcrumbSchema(pathArray) {
 }
 
 function generateArticleSchema(item, url) {
+  const author = {
+    "@type": "Person",
+    name: item.author || 'Staff',
+    url: item.authorUrl || `${BASE_URL}/author/${(item.author || 'Staff').toLowerCase().replace(/\s+/g, '-')}/`
+  };
+  if (item.authorImage) author.image = item.authorImage;
+  
   const schema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -115,8 +122,38 @@ function generateArticleSchema(item, url) {
     description: item.description || '',
     image: item.image || '',
     datePublished: item.date?.toISOString() || '',
-    author: { "@type": "Person", name: (item.author || 'Staff') },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url }
+    dateModified: item.dateModified?.toISOString() || item.date?.toISOString() || '',
+    author: author,
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: BASE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: BASE_URL + '/logo.png',
+        width: 250,
+        height: 60
+      }
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    keywords: item.keywords || '',
+    articleSection: item.category || 'General'
+  };
+  return `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`;
+}
+
+function generateOrganizationSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE_NAME,
+    url: BASE_URL,
+    description: SITE_DESC,
+    logo: BASE_URL + '/logo.png',
+    sameAs: [
+      "https://twitter.com/yourhandle",
+      "https://linkedin.com/company/einp"
+    ]
   };
   return `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`;
 }

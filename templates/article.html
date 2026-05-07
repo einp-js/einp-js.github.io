@@ -12,6 +12,9 @@
   <meta name="article:published_time" content="{{date}}">
   <meta name="article:author" content="{{author}}">
   <meta name="article:section" content="{{category}}">
+  <link rel="canonical" href="{{canonicalUrl}}">
+  
+  {{jsonLdSchema}}
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -111,11 +114,11 @@
           <ul class="text-sm space-y-2">
             <li><a href="/" class="text-secondary hover:underline">Home</a></li>
             <li><a href="#" class="text-secondary hover:underline">Archive</a></li>
-            <li><a href="#" class="text-secondary hover:underline">RSS</a></li>
+            <li><a href="/feed.xml" class="text-secondary hover:underline">RSS</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-serif font-bold mb-4\">Connect</h4>
+          <h4 class="font-serif font-bold mb-4">Connect</h4>
           <ul class="text-sm space-y-2">
             <li><a href="#" class="text-secondary hover:underline">Twitter</a></li>
             <li><a href="#" class="text-secondary hover:underline">Newsletter</a></li>
