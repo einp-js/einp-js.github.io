@@ -8,15 +8,24 @@ const CONTENT_DIR = './content';
 const TEMPLATES_DIR = './templates';
 const BASE_URL = process.env.BASE_URL || 'https://everythinginperspective.github.io';
 
-// Load configuration
-const config = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'config.json'), 'utf-8'));
+// ============================================================================
+// NEW: Content Registry - Auto-discover content types from folder structure
+// ============================================================================
+const CONTENT_REGISTRY = [
+  { folder: 'articles', singular: 'article', plural: 'articles', template: 'article.html' },
+  { folder: 'perspectives', singular: 'perspective', plural: 'perspectives', template: 'perspective.html' },
+  { folder: 'books', singular: 'book', plural: 'books', template: 'book.html' },
+  { folder: 'pages', singular: 'page', plural: 'pages', template: 'page.html' },
+  { folder: 'people', singular: 'person', plural: 'people', template: 'person.html' },
+  { folder: 'languages', singular: 'language', plural: 'languages', template: 'language.html' },
+];
 
-// Load templates dynamically
+// Load templates dynamically from registry
 const templates = {};
-config.contentTypes.forEach(ct => {
+CONTENT_REGISTRY.forEach(ct => {
   const templatePath = path.join(TEMPLATES_DIR, ct.template);
   if (fs.existsSync(templatePath)) {
-    templates[ct.name] = fs.readFileSync(templatePath, 'utf-8');
+    templates[ct.folder] = fs.readFileSync(templatePath, 'utf-8');
   } else {
     console.warn(`⚠️  Missing template: ${templatePath}`);
   }
@@ -26,6 +35,9 @@ const homeTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'home.html'), 'utf
 // Load languages
 const languages = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'languages', 'languages.json'), 'utf-8'));
 const languageCodes = languages.map(l => l.code);
+
+// LEGACY: Keep old config for backward compatibility (deprecated)
+const config = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'config.json'), 'utf-8'));
 
 // Ensure docs directory exists
 if (!fs.existsSync(DOCS_DIR)) {
