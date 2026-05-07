@@ -162,14 +162,49 @@ function generateOrganizationSchema() {
 // Fill template with data
 function fillTemplate(template, item, extras = {}) {
   let result = template;
-  const fields = { title: 'Untitled', description: '', slug: '', language: '', content: '', author: 'Staff',
-    publishedDate: '', publishedDateFormatted: '', category: '', keywords: '', image: '', imageAlt: '', imageCaption: '', authorBio: '' };
+  const fields = {
+    title: 'Untitled',
+    description: '',
+    slug: '',
+    language: 'en',
+    content: '',
+    author: 'Staff',
+    publishedDate: item.date instanceof Date ? item.date.toISOString().split('T')[0] : '',
+    publishedDateFormatted: item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '',
+    modifiedDate: item.dateModified instanceof Date ? item.dateModified.toISOString().split('T')[0] : (item.date instanceof Date ? item.date.toISOString().split('T')[0] : ''),
+    modifiedDateFormatted: item.dateModified instanceof Date ? item.dateModified.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : (item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''),
+    date: item.date instanceof Date ? item.date.toISOString() : '',
+    category: '',
+    keywords: '',
+    image: item.image || item.cover || '',
+    imageAlt: '',
+    imageCaption: '',
+    authorBio: '',
+    cover: item.cover || item.image || '',
+    isbn: '',
+    pages: '',
+    publisher: '',
+    publishDate: item.publishDate || (item.date instanceof Date ? item.date.toISOString().split('T')[0] : ''),
+    subtitle: '',
+    contentType: item.contentType || '',
+    year: item.year || '',
+    role: item.role || '',
+    website: item.website || '',
+    twitter: item.twitter || '',
+    linkedin: item.linkedin || '',
+    code: item.code || '',
+    name: item.name || item.title || ''
+  };
   Object.keys(fields).forEach(k => {
-    result = result.replace(new RegExp(`{{${k}}}`, 'g'), item[k] || fields[k]);
+    const value = item[k] !== undefined && item[k] !== null && item[k] !== '' ? item[k] : fields[k];
+    result = result.replace(new RegExp(`{{${k}}}`, 'g'), String(value));
   });
   result = result.replace(/{{hreflang}}/g, extras.hreflang || '');
   result = result.replace(/{{jsonLdSchema}}/g, extras.jsonLd || '');
   result = result.replace(/{{canonicalUrl}}/g, extras.canonical || '');
+  result = result.replace(/{{magazineUrl}}/g, extras.magazineUrl || '');
+  result = result.replace(/{{authorInfo}}/g, item.author ? `<p class="text-muted text-sm mb-2">By <span class="font-bold"><a href="/author/${(item.author || 'staff').toLowerCase().replace(/\s+/g, '-')}" class="hover:underline">${item.author}</a></span></p>` : '');
+  result = result.replace(/{{dateInfo}}/g, item.date instanceof Date ? `<p class="text-muted text-sm">${item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : '');
   return result;
 }
 
@@ -477,7 +512,46 @@ function build() {
         // Linked-data view
         const ldPath = path.join(DOCS_DIR, 'linked-data', ct.singular, item.slug);
         fs.mkdirSync(ldPath, { recursive: true });
-        fs.writeFileSync(path.join(ldPath, 'index.html'), filledTemplate);
+        const tagNames = (item.keywords || '').split(',').map(tag => tag.trim()).filter(Boolean);
+        const authorSlug = (item.author || 'staff').toLowerCase().replace(/\s+/g, '-');
+        const categorySlug = (item.category || '').toLowerCase().replace(/\s+/g, '-');
+        const relatedByAuthor = item.author ? items.filter(candidate => candidate.slug !== item.slug && candidate.author === item.author).slice(0, 5) : [];
+        const relatedByCategory = item.category ? items.filter(candidate => candidate.slug !== item.slug && candidate.category === item.category).slice(0, 5) : [];
+        const relatedContentHtml = [...relatedByAuthor, ...relatedByCategory]
+          .slice(0, 6)
+          .map(related => `<li><a href="/linked-data/${ct.singular}/${related.slug}/">${related.title}</a></li>`)
+          .join('');
+        const tagsHtml = tagNames.length ? `<div class="relationship-card"><h3>Tags</h3><ul>${tagNames.map(tag => `<li><a href="/tag/${tag.toLowerCase().replace(/\s+/g, '-')}">#${tag}</a></li>`).join('')}</ul></div>` : '<div class="relationship-card"><h3>Tags</h3><p class="text-muted text-sm">No tags listed.</p></div>';
+        const authorsSection = item.author ? `<div class="relationship-card"><h3>Author</h3><ul><li><a href="/author/${authorSlug}/">${item.author}</a></li></ul></div>` : '<div class="relationship-card"><h3>Author</h3><p class="text-muted text-sm">No author listed.</p></div>';
+        const categoriesSection = item.category ? `<div class="relationship-card"><h3>Category</h3><ul><li><a href="/category/${categorySlug}/">${item.category}</a></li></ul></div>` : '<div class="relationship-card"><h3>Category</h3><p class="text-muted text-sm">No category listed.</p></div>';
+        const relatedContentSection = `<div class="relationship-card"><h3>Related ${ct.plural}</h3>${relatedContentHtml ? `<ul>${relatedContentHtml}</ul>` : '<p class="text-muted text-sm">No closely related items yet.</p>'}</div>`;
+        const backlinksSection = relatedByAuthor.length || relatedByCategory.length
+          ? `<div class="space-y-3">${[...relatedByAuthor, ...relatedByCategory].slice(0, 8).map(related => `<div class="border border-accent p-4 rounded"><a href="/linked-data/${ct.singular}/${related.slug}/" class="font-bold hover:underline">${related.title}</a><p class="text-sm text-muted mt-1">Shared author or category relationship</p></div>`).join('')}</div>`
+          : '<p class="text-muted text-sm">No backlinks indexed yet.</p>';
+        const frontlinksSection = `<div class="space-y-3">${[
+          item.author ? `<div class="border border-accent p-4 rounded"><a href="/author/${authorSlug}/" class="font-bold hover:underline">Author: ${item.author}</a></div>` : '',
+          item.category ? `<div class="border border-accent p-4 rounded"><a href="/category/${categorySlug}/" class="font-bold hover:underline">Category: ${item.category}</a></div>` : '',
+          ...tagNames.map(tag => `<div class="border border-accent p-4 rounded"><a href="/tag/${tag.toLowerCase().replace(/\s+/g, '-')}" class="font-bold hover:underline">Tag: #${tag}</a></div>`)
+        ].filter(Boolean).join('')}</div>`;
+        const ldExtras = {
+          canonical: `${BASE_URL}/linked-data/${ct.singular}/${item.slug}/`,
+          magazineUrl: `${BASE_URL}/magazine/${ct.singular}/${item.slug}/`,
+          jsonLd: breadcrumb + jsonLd,
+        };
+        let linkedDataHtml = fillTemplate(linkedDataDetailTemplate, { ...item, contentType: ct.singular }, ldExtras);
+        linkedDataHtml = linkedDataHtml.replace(/{{authorsSection}}/g, authorsSection);
+        linkedDataHtml = linkedDataHtml.replace(/{{categoriesSection}}/g, categoriesSection);
+        linkedDataHtml = linkedDataHtml.replace(/{{tagsSection}}/g, tagsHtml);
+        linkedDataHtml = linkedDataHtml.replace(/{{relatedContentSection}}/g, relatedContentSection);
+        linkedDataHtml = linkedDataHtml.replace(/{{backlinksSection}}/g, backlinksSection);
+        linkedDataHtml = linkedDataHtml.replace(/{{frontlinksSection}}/g, frontlinksSection);
+        linkedDataHtml = linkedDataHtml.replace(/{{authorCount}}/g, item.author ? '1' : '0');
+        linkedDataHtml = linkedDataHtml.replace(/{{categoryCount}}/g, item.category ? '1' : '0');
+        linkedDataHtml = linkedDataHtml.replace(/{{tagCount}}/g, String(tagNames.length));
+        linkedDataHtml = linkedDataHtml.replace(/{{yCategoryPlural}}/g, item.category ? 'y' : 'ies');
+        linkedDataHtml = linkedDataHtml.replace(/{{tagPlural}}/g, tagNames.length === 1 ? '' : 's');
+        linkedDataHtml = linkedDataHtml.replace(/{{connectionCount}}/g, String((item.author ? 1 : 0) + (item.category ? 1 : 0) + tagNames.length + [...relatedByAuthor, ...relatedByCategory].slice(0, 8).length));
+        fs.writeFileSync(path.join(ldPath, 'index.html'), linkedDataHtml);
         totalPages++;
         allRoutes.push({ label: `${item.title} (LD)`, url: `${BASE_URL}/linked-data/${ct.singular}/${item.slug}/`, type: ct.singular, description: item.description });
       });
