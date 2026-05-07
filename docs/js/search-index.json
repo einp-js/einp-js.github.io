@@ -108,15 +108,6 @@
     "date": "2026-05-04"
   },
   {
-    "id": "page-cookie-policy",
-    "title": "Cookie Policy",
-    "description": "",
-    "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/cookie-policy/",
-    "author": "Staff",
-    "date": "2026-05-07"
-  },
-  {
     "id": "page-faq",
     "title": "Frequently Asked Questions",
     "description": "",
@@ -144,11 +135,11 @@
     "date": "2026-05-07"
   },
   {
-    "id": "page-about",
-    "title": "About Everything in Perspective",
-    "description": "Learn about our mission to provide context and nuance on global trends",
+    "id": "page-cookie-policy",
+    "title": "Cookie Policy",
+    "description": "",
     "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/about/",
+    "url": "/everythinginperspective_purejs/magazine/page/cookie-policy/",
     "author": "Staff",
     "date": "2026-05-07"
   },
@@ -158,6 +149,15 @@
     "description": "",
     "type": "page",
     "url": "/everythinginperspective_purejs/magazine/page/contact-us/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
+    "id": "page-about",
+    "title": "About Everything in Perspective",
+    "description": "Learn about our mission to provide context and nuance on global trends",
+    "type": "page",
+    "url": "/everythinginperspective_purejs/magazine/page/about/",
     "author": "Staff",
     "date": "2026-05-07"
   }

@@ -24,18 +24,18 @@
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/weather-climate-data-literacy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/perspective/chatgpt-in-perspective/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/perspective/chatgpt-in-perspective/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/faq/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/faq/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/privacy-policy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/terms-conditions/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/terms-conditions/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/about/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/contact-us/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/about/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/articles/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/articles/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/perspectives/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
@@ -44,4 +44,67 @@
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/pages/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/</loc><lastmod>2026-05-07</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
   <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/search/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/author/staff/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/category/technology/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/category/psychology/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/category/culture/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/category/economics/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/category/finance/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/category/environment/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/gemini/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/gemini-ai/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/claude-ai/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/llm/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/artificial-intelligence/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/ai-models/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/google-maps/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/location-tracking/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/privacy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/location-data/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/mapping-technology/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/instagram/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/social-media-mental-health/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/instagram-mental-health/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/instagram-anxiety/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/social-media-addiction/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/cricket/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/cricbuzz/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/india-vs-england/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/sports-culture/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/cricket-world-cup/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/amazon/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/flipkart/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/ecommerce/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/online-shopping/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/retail-disruption/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/gold-rate-today/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/gold-price/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/inflation-hedge/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/precious-metals/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/investment/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/restaurants-near-me/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/restaurant-culture/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/food-industry/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/dining-economy/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/local-restaurants/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/satta-king/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/satta-matka/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/illegal-gambling-india/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/economic-desperation/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/gambling-addiction/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/streaming/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/netflix/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/movies/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/tv-shows/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/entertainment-distribution/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/translate/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/translation/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/google-translate/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/language-barriers/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/ai-translation/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/weather/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/climate-change/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/weather-forecast/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/global-warming/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://everythinginperspective.github.io/everythinginperspective_purejs/tag/climate-data/</loc><lastmod>2026-05-07</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

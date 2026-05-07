@@ -148,18 +148,6 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: perspective
 Description: Understanding ChatGPT's impact beyond the hype—historical context, labor implications, and systemic changes.
 
-### Cookie Policy (Mag)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/
-Type: page
-Description: N/A
-
-### Cookie Policy (LD)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/
-Type: page
-Description: N/A
-
 ### Frequently Asked Questions (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/faq/
@@ -196,17 +184,17 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: page
 Description: N/A
 
-### About Everything in Perspective (Mag)
+### Cookie Policy (Mag)
 
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/about/
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/
 Type: page
-Description: Learn about our mission to provide context and nuance on global trends
+Description: N/A
 
-### About Everything in Perspective (LD)
+### Cookie Policy (LD)
 
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/
 Type: page
-Description: Learn about our mission to provide context and nuance on global trends
+Description: N/A
 
 ### Contact Us (Mag)
 
@@ -219,6 +207,18 @@ Description: N/A
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/
 Type: page
 Description: N/A
+
+### About Everything in Perspective (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/about/
+Type: page
+Description: Learn about our mission to provide context and nuance on global trends
+
+### About Everything in Perspective (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/
+Type: page
+Description: Learn about our mission to provide context and nuance on global trends
 
 ### articles (Mag)
 
