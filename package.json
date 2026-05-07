@@ -5,6 +5,7 @@
   "main": "build.js",
   "scripts": {
     "build": "node build.js",
+    "generate": "node build.js",
     "dev": "node build.js && python3 -m http.server 8000 --directory docs",
     "start": "python3 -m http.server 8000 --directory docs"
   },

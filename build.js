@@ -30,6 +30,7 @@ CONTENT_REGISTRY.forEach(ct => {
 });
 const magazineCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'magazine-collection.html'), 'utf-8');
 const linkedDataCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'linked-data-collection.html'), 'utf-8');
+const linkedDataDetailTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'linked-data-detail.html'), 'utf-8');
 const searchResultsTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'search-results.html'), 'utf-8');
 const authorTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'author.html'), 'utf-8');
 const categoryTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'category.html'), 'utf-8');

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}} (Linked Data) | Everything in Perspective</title>
+  <meta name="description" content="Linked data view: {{title}} - See all relationships, connections, and references.">
+  
+  <!-- OpenGraph Tags -->
+  <meta property="og:title" content="{{title}} (Linked Data)">
+  <meta property="og:description" content="Linked data view: {{title}} - See all relationships, connections, and references.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{canonicalUrl}}">
+  <meta property="og:site_name" content="Everything in Perspective">
+  <meta property="og:image" content="{{image}}">
+  
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{title}} (Linked Data)">
+  <meta name="twitter:description" content="Linked data view: {{title}} - See all relationships, connections, and references.">
+  <meta name="twitter:image" content="{{image}}">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{canonicalUrl}}">
+  <link rel="alternate" href="{{magazineUrl}}" title="Magazine View">
+  
+  {{jsonLdSchema}}
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Georgia', 'Garamond', 'serif'],
+            sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            primary: '#000000',
+            secondary: '#FFFFFF',
+            accent: '#1a1a1a',
+            light: '#F5F5F5',
+            muted: '#666666',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: Georgia, Garamond, serif; font-weight: 400; }
+    .relationship-graph { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .relationship-card { border: 1px solid #1a1a1a; padding: 1.5rem; border-radius: 0.5rem; }
+    .relationship-card h3 { font-size: 0.875rem; text-transform: uppercase; color: #666666; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+    .relationship-card ul { list-style: none; padding: 0; }
+    .relationship-card li { margin-bottom: 0.5rem; }
+    .relationship-card a { color: #000; text-decoration: underline; }
+    .relationship-card a:hover { text-decoration: none; }
+    .badge { display: inline-block; background-color: #F5F5F5; padding: 0.25rem 0.75rem; border-radius: 0.25rem; font-size: 0.75rem; margin-right: 0.5rem; }
+  </style>
+</head>
+<body class="bg-secondary text-primary">
+  <!-- Header -->
+  <header class="border-b border-accent bg-secondary">
+    <div class="max-w-6xl mx-auto px-6 py-8">
+      <div class="flex justify-between items-center mb-4">
+        <a href="/" class="text-2xl font-serif font-bold">Everything in Perspective</a>
+        <form action="/search/" method="get" class="flex gap-2">
+          <input type="text" name="q" placeholder="Search articles..." class="px-4 py-2 border border-accent rounded text-sm w-48" />
+          <button type="submit" class="px-4 py-2 bg-accent text-secondary font-bold rounded hover:bg-primary text-sm">Search</button>
+        </form>
+      </div>
+      <nav class="flex gap-6 text-sm flex-wrap">
+        <a href="/" class="hover:underline font-bold">Home</a>
+        <a href="/magazine/articles/" class="hover:underline">Articles</a>
+        <a href="/magazine/perspectives/" class="hover:underline">Perspectives</a>
+        <a href="/magazine/page/faq/" class="hover:underline">FAQ</a>
+        <a href="/magazine/page/contact-us/" class="hover:underline">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-20">
+    <article>
+      <!-- Breadcrumb Navigation -->
+      <nav aria-label="breadcrumb" class="mb-6 text-sm text-muted">
+        <ol class="flex gap-2 items-center flex-wrap">
+          <li><a href="/" class="hover:underline font-bold">Home</a></li>
+          <li class="text-accent">/</li>
+          <li><a href="/linked-data/" class="hover:underline">Linked Data</a></li>
+          <li class="text-accent">/</li>
+          <li class="font-bold">{{title}}</li>
+        </ol>
+      </nav>
+
+      <!-- Item Metadata -->
+      <div class="mb-12 pb-8 border-b border-accent">
+        <h1 class="font-serif text-5xl font-bold mb-4 leading-tight">{{title}}</h1>
+        <p class="text-muted text-sm mb-4"><span class="badge">LINKED DATA VIEW</span> See all relationships and connections for this item</p>
+        <div class="flex justify-between items-baseline gap-4 flex-wrap">
+          <div>
+            <p class="text-muted text-sm mb-2">Content Type: <span class="font-bold">{{contentType}}</span></p>
+            {{authorInfo}}
+            {{dateInfo}}
+          </div>
+          <a href="{{magazineUrl}}" class="text-primary font-bold hover:underline text-sm">← View Magazine</a>
+        </div>
+      </div>
+
+      <!-- Relationships Section -->
+      <section class="mb-16">
+        <h2 class="font-serif text-3xl font-bold mb-8">Connections & Relationships</h2>
+        
+        <div class="relationship-graph">
+          <!-- Authors -->
+          {{authorsSection}}
+
+          <!-- Categories -->
+          {{categoriesSection}}
+
+          <!-- Tags/Keywords -->
+          {{tagsSection}}
+
+          <!-- Related Content by Type -->
+          {{relatedContentSection}}
+        </div>
+      </section>
+
+      <!-- Backlinks Section -->
+      <section class="mb-16">
+        <h2 class="font-serif text-3xl font-bold mb-8">Referenced By</h2>
+        {{backlinksSection}}
+      </section>
+
+      <!-- Frontlinks Section -->
+      <section class="mb-16">
+        <h2 class="font-serif text-3xl font-bold mb-8">References</h2>
+        {{frontlinksSection}}
+      </section>
+
+      <!-- Graph Statistics -->
+      <section class="mt-16 pt-8 border-t border-accent">
+        <h2 class="font-serif text-2xl font-bold mb-6">Graph Statistics</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="border border-accent p-4 rounded text-center">
+            <p class="text-2xl font-bold">{{authorCount}}</p>
+            <p class="text-xs text-muted uppercase">Author(s)</p>
+          </div>
+          <div class="border border-accent p-4 rounded text-center">
+            <p class="text-2xl font-bold">{{categoryCount}}</p>
+            <p class="text-xs text-muted uppercase">Categor{{yCategoryPlural}}</p>
+          </div>
+          <div class="border border-accent p-4 rounded text-center">
+            <p class="text-2xl font-bold">{{tagCount}}</p>
+            <p class="text-xs text-muted uppercase">Tag{{tagPlural}}</p>
+          </div>
+          <div class="border border-accent p-4 rounded text-center">
+            <p class="text-2xl font-bold">{{connectionCount}}</p>
+            <p class="text-xs text-muted uppercase">Total Links</p>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-accent text-secondary mt-24 py-12 border-t border-primary">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-3 gap-8 mb-12">
+        <div>
+          <h4 class="font-serif font-bold mb-4">Everything in Perspective</h4>
+          <p class="text-sm text-muted">Essays on trends, context & nuance.</p>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4">Resources</h4>
+          <ul class="text-sm space-y-2">
+            <li><a href="/" class="text-secondary hover:underline">Home</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Archive</a></li>
+            <li><a href="/feed.xml" class="text-secondary hover:underline">RSS</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-serif font-bold mb-4">Connect</h4>
+          <ul class="text-sm space-y-2">
+            <li><a href="#" class="text-secondary hover:underline">Twitter</a></li>
+            <li><a href="#" class="text-secondary hover:underline">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-primary pt-8 text-xs text-muted text-center">
+        <p>&copy; 2026 Everything in Perspective.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
