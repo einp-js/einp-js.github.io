@@ -73,6 +73,122 @@ function copyThemesAndFiles() {
   });
 }
 
+// Helper: Convert HTML to plain markdown (basic)
+function htmlToMarkdown(html) {
+  return html
+    .replace(/<[^>]*>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .trim();
+}
+
+// Generate markdown files for LLM consumption
+function generateMarkdownFiles(allContent, entities) {
+  console.log('📄 Generating markdown files for LLMs...');
+  let mdCount = 0;
+  
+  // Generate .md for each content item
+  CONTENT_REGISTRY.forEach(ct => {
+    if (allContent[ct.folder]) {
+      allContent[ct.folder].forEach(item => {
+        const mdContent = `# ${item.title}
+
+**Type:** ${ct.singular}
+**Date:** ${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Unknown'}
+**Author:** ${item.author || 'Staff'}
+**Category:** ${item.category || 'Uncategorized'}
+
+## Description
+
+${item.description || 'No description available.'}
+
+## Content
+
+${htmlToMarkdown(item.content || '')}
+
+${item.author ? \`## Author\n\n- **Name:** \${item.author}\n\` : ''}
+${item.category ? \`## Category\n\n- **Category:** \${item.category}\n\` : ''}
+${item.keywords ? \`## Keywords\n\n\${item.keywords.split(',').map(k => \`- \${k.trim()}\`).join('\n')}\n\` : ''}
+
+---
+
+**Source:** ${BASE_URL}/magazine/${ct.singular}/${item.slug}/
+**Linked Data:** ${BASE_URL}/linked-data/${ct.singular}/${item.slug}/
+`;
+        const mdPath = path.join(DOCS_DIR, 'markdown', ct.singular, item.slug);
+        fs.mkdirSync(mdPath, { recursive: true });
+        fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
+        mdCount++;
+      });
+    }
+  });
+  
+  // Generate .md for author pages
+  Object.values(entities.authors).forEach(author => {
+    const mdContent = \`# Author: \${author.name}
+
+## Articles by \${author.name}
+
+\${author.items.map(item => \`- [\${item.title}](\${BASE_URL}/magazine/\${item.contentType}/\${item.slug}/) - \${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}\`).join('\n')}
+
+**Count:** \${author.items.length} item(s)
+
+---
+
+**Source:** \${BASE_URL}/author/\${author.slug}/
+\`;
+    const mdPath = path.join(DOCS_DIR, 'markdown', 'author', author.slug);
+    fs.mkdirSync(mdPath, { recursive: true });
+    fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
+    mdCount++;
+  });
+  
+  // Generate .md for category pages
+  Object.values(entities.categories).forEach(category => {
+    const mdContent = \`# Category: \${category.name}
+
+## Items in \${category.name}
+
+\${category.items.map(item => \`- [\${item.title}](\${BASE_URL}/magazine/\${item.contentType}/\${item.slug}/) - \${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}\`).join('\n')}
+
+**Count:** \${category.items.length} item(s)
+
+---
+
+**Source:** \${BASE_URL}/category/\${category.slug}/
+\`;
+    const mdPath = path.join(DOCS_DIR, 'markdown', 'category', category.slug);
+    fs.mkdirSync(mdPath, { recursive: true });
+    fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
+    mdCount++;
+  });
+  
+  // Generate .md for tags
+  Object.values(entities.tags).forEach(tag => {
+    const mdContent = \`# Tag: #\${tag.name}
+
+## Items tagged #\${tag.name}
+
+\${tag.items.map(item => \`- [\${item.title}](\${BASE_URL}/magazine/\${item.contentType}/\${item.slug}/) - \${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}\`).join('\n')}
+
+**Count:** \${tag.items.length} item(s)
+
+---
+
+**Source:** \${BASE_URL}/tag/\${tag.slug}/
+\`;
+    const mdPath = path.join(DOCS_DIR, 'markdown', 'tag', tag.slug);
+    fs.mkdirSync(mdPath, { recursive: true });
+    fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
+    mdCount++;
+  });
+  
+  console.log(\`📄 Generated \${mdCount} markdown files for LLM consumption\`);
+  return mdCount;
+}
+
 // Parse content markdown files
 function parseContent(contentType) {
   const contentDir = path.join(CONTENT_DIR, contentType);
@@ -635,6 +751,9 @@ function build() {
   // PHASE 6: Generate entity pages (authors, categories, tags)
   const entities = extractEntities(allContent);
   totalPages = generateEntityPages(entities, allRoutes, totalPages);
+
+  // PHASE 6B: Generate markdown files for LLM consumption
+  generateMarkdownFiles(allContent, entities);
 
   // PHASE 7: Sitemaps
   generateSitemaps(allRoutes);
