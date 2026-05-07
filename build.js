@@ -30,6 +30,9 @@ CONTENT_REGISTRY.forEach(ct => {
 const magazineCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'magazine-collection.html'), 'utf-8');
 const linkedDataCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'linked-data-collection.html'), 'utf-8');
 const searchResultsTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'search-results.html'), 'utf-8');
+const authorTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'author.html'), 'utf-8');
+const categoryTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'category.html'), 'utf-8');
+const tagTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'tag.html'), 'utf-8');
 const homeTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'home.html'), 'utf-8');
 const config = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'config.json'), 'utf-8'));
 
@@ -226,6 +229,118 @@ ${urls.map(u => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod><chang
   console.log(`📍 Generated sitemaps (${urls.length} URLs)`);
 }
 
+// Extract and index entities
+function extractEntities(allContent) {
+  const authors = {};
+  const categories = {};
+  const tags = {};
+  
+  Object.values(allContent).forEach(items => {
+    items.forEach(item => {
+      if (item.author) {
+        const slug = item.author.toLowerCase().replace(/\s+/g, '-');
+        if (!authors[slug]) authors[slug] = { name: item.author, items: [], slug };
+        authors[slug].items.push(item);
+      }
+      if (item.category) {
+        const slug = item.category.toLowerCase().replace(/\s+/g, '-');
+        if (!categories[slug]) categories[slug] = { name: item.category, items: [], slug };
+        categories[slug].items.push(item);
+      }
+      if (item.keywords) {
+        (item.keywords || '').split(',').forEach(kw => {
+          const tag = kw.trim();
+          if (tag) {
+            const slug = tag.toLowerCase().replace(/\s+/g, '-');
+            if (!tags[slug]) tags[slug] = { name: tag, items: [], slug };
+            tags[slug].items.push(item);
+          }
+        });
+      }
+    });
+  });
+  return { authors, categories, tags };
+}
+
+// Generate entity pages
+function generateEntityPages(entities, allRoutes, totalPages) {
+  let pages = totalPages;
+  
+  console.log('👤 Generating author pages...');
+  Object.values(entities.authors).forEach(author => {
+    const itemsList = author.items.map(item => `
+    <div class="border border-accent p-4 rounded">
+      <h3 class="font-serif text-lg font-bold mb-2"><a href="/magazine/${item.contentType}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
+      <p class="text-muted text-sm">${item.date?.toLocaleDateString() || ''}</p>
+    </div>`).join('');
+    
+    const page = authorTemplate
+      .replace(/{{authorName}}/g, author.name)
+      .replace(/{{itemCount}}/g, author.items.length)
+      .replace(/{{pluralS}}/g, author.items.length === 1 ? '' : 's')
+      .replace(/{{itemsList}}/g, itemsList)
+      .replace(/{{canonicalUrl}}/g, `${BASE_URL}/author/${author.slug}/`)
+      .replace(/{{jsonLdSchema}}/g, generateBreadcrumbSchema(['author', author.slug]))
+      .replace(/{{relatedAuthors}}/g, '');
+    
+    const authPath = path.join(DOCS_DIR, 'author', author.slug);
+    fs.mkdirSync(authPath, { recursive: true });
+    fs.writeFileSync(path.join(authPath, 'index.html'), page);
+    pages++;
+    allRoutes.push({ label: author.name, url: `${BASE_URL}/author/${author.slug}/`, type: 'author', description: `${author.items.length} articles by ${author.name}` });
+  });
+  
+  console.log('🏷️  Generating category pages...');
+  Object.values(entities.categories).forEach(category => {
+    const itemsList = category.items.map(item => `
+    <div class="border border-accent p-4 rounded">
+      <h3 class="font-serif text-lg font-bold mb-2"><a href="/magazine/${item.contentType}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
+      <p class="text-muted text-sm">${item.date?.toLocaleDateString() || ''}</p>
+    </div>`).join('');
+    
+    const page = categoryTemplate
+      .replace(/{{categoryName}}/g, category.name)
+      .replace(/{{itemCount}}/g, category.items.length)
+      .replace(/{{pluralS}}/g, category.items.length === 1 ? '' : 's')
+      .replace(/{{itemsList}}/g, itemsList)
+      .replace(/{{canonicalUrl}}/g, `${BASE_URL}/category/${category.slug}/`)
+      .replace(/{{jsonLdSchema}}/g, generateBreadcrumbSchema(['category', category.slug]))
+      .replace(/{{relatedCategories}}/g, '');
+    
+    const catPath = path.join(DOCS_DIR, 'category', category.slug);
+    fs.mkdirSync(catPath, { recursive: true });
+    fs.writeFileSync(path.join(catPath, 'index.html'), page);
+    pages++;
+    allRoutes.push({ label: category.name, url: `${BASE_URL}/category/${category.slug}/`, type: 'category', description: `${category.items.length} items in ${category.name}` });
+  });
+  
+  console.log('🔖 Generating tag pages...');
+  Object.values(entities.tags).forEach(tag => {
+    const itemsList = tag.items.map(item => `
+    <div class="border border-accent p-4 rounded">
+      <h3 class="font-serif text-lg font-bold mb-2"><a href="/magazine/${item.contentType}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
+      <p class="text-muted text-sm">${item.date?.toLocaleDateString() || ''}</p>
+    </div>`).join('');
+    
+    const page = tagTemplate
+      .replace(/{{tagName}}/g, tag.name)
+      .replace(/{{itemCount}}/g, tag.items.length)
+      .replace(/{{pluralS}}/g, tag.items.length === 1 ? '' : 's')
+      .replace(/{{itemsList}}/g, itemsList)
+      .replace(/{{canonicalUrl}}/g, `${BASE_URL}/tag/${tag.slug}/`)
+      .replace(/{{jsonLdSchema}}/g, generateBreadcrumbSchema(['tag', tag.slug]))
+      .replace(/{{relatedTags}}/g, '');
+    
+    const tagPath = path.join(DOCS_DIR, 'tag', tag.slug);
+    fs.mkdirSync(tagPath, { recursive: true });
+    fs.writeFileSync(path.join(tagPath, 'index.html'), page);
+    pages++;
+    allRoutes.push({ label: `#${tag.name}`, url: `${BASE_URL}/tag/${tag.slug}/`, type: 'tag', description: `${tag.items.length} items tagged #${tag.name}` });
+  });
+  
+  return pages;
+}
+
 // Count HTML files
 function countHtmlFiles(dir) {
   let count = 0;
@@ -356,7 +471,11 @@ function build() {
   totalPages++;
   allRoutes.push({ label: 'Search', url: `${BASE_URL}/search/`, type: 'search', description: 'Search all content' });
 
-  // PHASE 6: Sitemaps
+  // PHASE 6: Generate entity pages (authors, categories, tags)
+  const entities = extractEntities(allContent);
+  totalPages = generateEntityPages(entities, allRoutes, totalPages);
+
+  // PHASE 7: Sitemaps
   generateSitemaps(allRoutes);
 
   console.timeEnd('Build');
