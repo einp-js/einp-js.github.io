@@ -642,6 +642,54 @@ function build() {
   // PHASE 8: RSS feeds
   generateRssFeeds(allContent);
 
+  // PHASE 9: Generate static URL redirect pages
+  console.log('🔗 Generating URL redirect pages...');
+  const redirects = [
+    { from: 'mag', to: 'magazine' },
+    { from: 'ld', to: 'linked-data' }
+  ];
+  
+  // Redirect collection pages
+  redirects.forEach(({ from, to }) => {
+    CONTENT_REGISTRY.forEach(ct => {
+      // Collection redirect: /mag/articles -> /magazine/articles
+      const colRedirectHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="0; url=/everythinginperspective_purejs/${to}/${ct.plural}/">
+  <link rel="canonical" href="${BASE_URL}/${to}/${ct.plural}/">
+  <title>Redirecting...</title>
+</head>
+<body>Redirecting to <a href="/${to}/${ct.plural}/">${to}/${ct.plural}/</a></body>
+</html>`;
+      const colRedirPath = path.join(DOCS_DIR, from, ct.plural);
+      fs.mkdirSync(colRedirPath, { recursive: true });
+      fs.writeFileSync(path.join(colRedirPath, 'index.html'), colRedirectHtml);
+      totalPages++;
+    });
+    
+    // Item detail redirects: /mag/article/slug -> /magazine/article/slug
+    CONTENT_REGISTRY.forEach(ct => {
+      const items = allContent[ct.folder] || [];
+      items.forEach(item => {
+        const itemRedirectHtml = `<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="refresh" content="0; url=/everythinginperspective_purejs/${to}/${ct.singular}/${item.slug}/">
+  <link rel="canonical" href="${BASE_URL}/${to}/${ct.singular}/${item.slug}/">
+  <title>Redirecting...</title>
+</head>
+<body>Redirecting to <a href="/${to}/${ct.singular}/${item.slug}/">${to}/${ct.singular}/${item.slug}/</a></body>
+</html>`;
+        const itemRedirPath = path.join(DOCS_DIR, from, ct.singular, item.slug);
+        fs.mkdirSync(itemRedirPath, { recursive: true });
+        fs.writeFileSync(path.join(itemRedirPath, 'index.html'), itemRedirectHtml);
+        totalPages++;
+      });
+    });
+  });
+  console.log('🔗 Generated ${redirects.length * CONTENT_REGISTRY.length * 2} redirect pages');
+
   console.timeEnd('Build');
   const htmlFiles = countHtmlFiles(DOCS_DIR);
   console.log(`✨ Build complete! ${totalPages} pages + ${searchIndex.length} searchable items, ${htmlFiles} total HTML files`);
