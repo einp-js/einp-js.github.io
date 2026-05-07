@@ -7,7 +7,7 @@ const { Feed } = require('feed');
 const DOCS_DIR = './docs';
 const CONTENT_DIR = './content';
 const TEMPLATES_DIR = './templates';
-const BASE_URL = 'https://everythinginperspective.github.io/everythinginperspective_purejs';
+const BASE_URL = 'https://einp-js.github.io/';
 const SITE_NAME = 'Everything in Perspective';
 const SITE_DESC = 'Essays on trends, context & nuance';
 
@@ -315,6 +315,25 @@ function fillTemplate(template, item, extras = {}) {
     const value = item[k] !== undefined && item[k] !== null && item[k] !== '' ? item[k] : fields[k];
     result = result.replace(new RegExp(`{{${k}}}`, 'g'), String(value));
   });
+  // Base URL (for canonical, og:url, etc.)
+  result = result.replace(/{{baseUrl}}/g, BASE_URL);
+  // OG tags
+  const ogType = item.contentType === 'article' || item.contentType === 'perspective' ? 'article' : 'website';
+  result = result.replace(/{{ogType}}/g, ogType);
+  const ogArticlePublished = item.date ? `<meta property="article:published_time" content="${item.date.toISOString()}">` : '';
+  result = result.replace(/{{ogArticlePublished}}/g, ogArticlePublished);
+  const ogArticleModified = item.dateModified ? `<meta property="article:modified_time" content="${item.dateModified.toISOString()}">` : (item.date ? `<meta property="article:modified_time" content="${item.date.toISOString()}">` : '');
+  result = result.replace(/{{ogArticleModified}}/g, ogArticleModified);
+  const ogArticleAuthor = item.author ? `<meta property="article:author" content="${item.author}">` : '';
+  result = result.replace(/{{ogArticleAuthor}}/g, ogArticleAuthor);
+  const ogArticleSection = item.category ? `<meta property="article:section" content="${item.category}">` : '';
+  result = result.replace(/{{ogArticleSection}}/g, ogArticleSection);
+  // Twitter Card
+  const twitterCard = 'summary_large_image';
+  result = result.replace(/{{twitterCard}}/g, twitterCard);
+  const twitterCreator = item.twitter ? `@${item.twitter.replace(/^@/, '')}` : '@einperspective';
+  result = result.replace(/{{twitterCreator}}/g, twitterCreator);
+  // Structural tags
   result = result.replace(/{{hreflang}}/g, extras.hreflang || '');
   result = result.replace(/{{jsonLdSchema}}/g, extras.jsonLd || '');
   result = result.replace(/{{canonicalUrl}}/g, extras.canonical || '');
@@ -387,7 +406,7 @@ function generateSearchIndex(allContent) {
           title: item.title || 'Untitled',
           description: item.description || '',
           type: ct.singular,
-          url: `/everythinginperspective_purejs/magazine/${ct.singular}/${item.slug}/`,
+          url: `/magazine/${ct.singular}/${item.slug}/`,
           author: item.author || 'Staff',
           date: item.date?.toISOString().split('T')[0] || '',
         });
@@ -775,7 +794,7 @@ function build() {
       const colRedirectHtml = `<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; url=/everythinginperspective_purejs/${to}/${ct.plural}/">
+  <meta http-equiv="refresh" content="0; url=/${to}/${ct.plural}/">
   <link rel="canonical" href="${BASE_URL}/${to}/${ct.plural}/">
   <title>Redirecting...</title>
 </head>
@@ -794,7 +813,7 @@ function build() {
         const itemRedirectHtml = `<!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; url=/everythinginperspective_purejs/${to}/${ct.singular}/${item.slug}/">
+  <meta http-equiv="refresh" content="0; url=/${to}/${ct.singular}/${item.slug}/">
   <link rel="canonical" href="${BASE_URL}/${to}/${ct.singular}/${item.slug}/">
   <title>Redirecting...</title>
 </head>
