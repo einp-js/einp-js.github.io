@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://everythinginperspective.github.io/everythinginperspective_purejs/sitemap.xml
+Sitemap: https://einp-js.github.io//sitemap.xml
 
 User-agent: GPTBot
 Allow: /

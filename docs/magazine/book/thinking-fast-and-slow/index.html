@@ -16,20 +16,20 @@
   <meta property="og:type" content="book">
   <meta property="og:title" content="Thinking, Fast and Slow">
   <meta property="og:description" content="Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.">
-  <meta property="og:image" content="https://covers.openlibrary.org/b/id/8432157-L.jpg">
+  <meta property="og:image" content="{{cover}}">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="1800">
   <meta property="og:url" content="https://everythinginperspective.com/book/thinking-fast-and-slow/">
   <meta property="og:site_name" content="Everything in Perspective">
   <meta property="book:author" content="Daniel Kahneman">
-  <meta property="book:isbn" content="978-0374275631">
-  <meta property="book:release_date" content="2026-05-07">
+  <meta property="book:isbn" content="{{isbn}}">
+  <meta property="book:release_date" content="{{publishDate}}">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Thinking, Fast and Slow">
   <meta name="twitter:description" content="Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.">
-  <meta name="twitter:image" content="https://covers.openlibrary.org/b/id/8432157-L.jpg">
+  <meta name="twitter:image" content="{{cover}}">
   
   <!-- hreflang for i18n -->
   
@@ -41,16 +41,16 @@
     "@type": "Book",
     "name": "Thinking, Fast and Slow",
     "description": "Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.",
-    "image": "https://covers.openlibrary.org/b/id/8432157-L.jpg",
+    "image": "{{cover}}",
     "author": {
       "@type": "Person",
       "name": "Daniel Kahneman"
     },
-    "datePublished": "2026-05-07",
-    "isbn": "978-0374275631",
+    "datePublished": "{{publishDate}}",
+    "isbn": "{{isbn}}",
     "publisher": {
       "@type": "Organization",
-      "name": "Farrar, Straus and Giroux"
+      "name": "{{publisher}}"
     },
     "inLanguage": "en"
   }
@@ -141,7 +141,7 @@
         <!-- Book Cover -->
         <div class="sm:col-span-1">
           <figure>
-            <img src="https://covers.openlibrary.org/b/id/8432157-L.jpg" alt="Thinking, Fast and Slow cover" loading="lazy" width="300" height="450" class="w-full h-auto rounded border border-accent">
+            <img src="{{cover}}" alt="Thinking, Fast and Slow cover" loading="lazy" width="300" height="450" class="w-full h-auto rounded border border-accent">
             <figcaption class="text-xs text-muted mt-2">Thinking, Fast and Slow</figcaption>
           </figure>
         </div>
@@ -152,10 +152,10 @@
           <p class="text-lg text-muted mb-4">By Daniel Kahneman</p>
           
           <div class="space-y-3 text-sm mb-8">
-            {{#publisher}}<p><strong>Publisher:</strong> Farrar, Straus and Giroux</p>{{/publisher}}
-            {{#publishDate}}<p><strong>Published:</strong> 2026-05-07</p>{{/publishDate}}
-            {{#isbn}}<p><strong>ISBN:</strong> 978-0374275631</p>{{/isbn}}
-            {{#pages}}<p><strong>Pages:</strong> 499</p>{{/pages}}
+            {{#publisher}}<p><strong>Publisher:</strong> {{publisher}}</p>{{/publisher}}
+            {{#publishDate}}<p><strong>Published:</strong> {{publishDate}}</p>{{/publishDate}}
+            {{#isbn}}<p><strong>ISBN:</strong> {{isbn}}</p>{{/isbn}}
+            {{#pages}}<p><strong>Pages:</strong> {{pages}}</p>{{/pages}}
             {{#language}}<p><strong>Language:</strong> en</p>{{/language}}
           </div>
 
