@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const fm = require('front-matter');
 const { marked } = require('marked');
-const { Feed } = require('feed');
 
 const DOCS_DIR = './docs';
 const CONTENT_DIR = './content';
@@ -30,11 +29,6 @@ CONTENT_REGISTRY.forEach(ct => {
 });
 const magazineCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'magazine-collection.html'), 'utf-8');
 const linkedDataCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'linked-data-collection.html'), 'utf-8');
-const linkedDataDetailTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'linked-data-detail.html'), 'utf-8');
-const searchResultsTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'search-results.html'), 'utf-8');
-const authorTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'author.html'), 'utf-8');
-const categoryTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'category.html'), 'utf-8');
-const tagTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'tag.html'), 'utf-8');
 const homeTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'home.html'), 'utf-8');
 const config = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'config.json'), 'utf-8'));
 
@@ -73,122 +67,6 @@ function copyThemesAndFiles() {
   });
 }
 
-// Helper: Convert HTML to plain markdown (basic)
-function htmlToMarkdown(html) {
-  return html
-    .replace(/<[^>]*>/g, '')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .trim();
-}
-
-// Generate markdown files for LLM consumption
-function generateMarkdownFiles(allContent, entities) {
-  console.log('📄 Generating markdown files for LLMs...');
-  let mdCount = 0;
-  
-  // Generate .md for each content item
-  CONTENT_REGISTRY.forEach(ct => {
-    if (allContent[ct.folder]) {
-      allContent[ct.folder].forEach(item => {
-        const mdContent = `# ${item.title}
-
-**Type:** ${ct.singular}
-**Date:** ${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Unknown'}
-**Author:** ${item.author || 'Staff'}
-**Category:** ${item.category || 'Uncategorized'}
-
-## Description
-
-${item.description || 'No description available.'}
-
-## Content
-
-${htmlToMarkdown(item.content || '')}
-
-${item.author ? \`## Author\n\n- **Name:** \${item.author}\n\` : ''}
-${item.category ? \`## Category\n\n- **Category:** \${item.category}\n\` : ''}
-${item.keywords ? \`## Keywords\n\n\${item.keywords.split(',').map(k => \`- \${k.trim()}\`).join('\n')}\n\` : ''}
-
----
-
-**Source:** ${BASE_URL}/magazine/${ct.singular}/${item.slug}/
-**Linked Data:** ${BASE_URL}/linked-data/${ct.singular}/${item.slug}/
-`;
-        const mdPath = path.join(DOCS_DIR, 'markdown', ct.singular, item.slug);
-        fs.mkdirSync(mdPath, { recursive: true });
-        fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
-        mdCount++;
-      });
-    }
-  });
-  
-  // Generate .md for author pages
-  Object.values(entities.authors).forEach(author => {
-    const mdContent = \`# Author: \${author.name}
-
-## Articles by \${author.name}
-
-\${author.items.map(item => \`- [\${item.title}](\${BASE_URL}/magazine/\${item.contentType}/\${item.slug}/) - \${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}\`).join('\n')}
-
-**Count:** \${author.items.length} item(s)
-
----
-
-**Source:** \${BASE_URL}/author/\${author.slug}/
-\`;
-    const mdPath = path.join(DOCS_DIR, 'markdown', 'author', author.slug);
-    fs.mkdirSync(mdPath, { recursive: true });
-    fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
-    mdCount++;
-  });
-  
-  // Generate .md for category pages
-  Object.values(entities.categories).forEach(category => {
-    const mdContent = \`# Category: \${category.name}
-
-## Items in \${category.name}
-
-\${category.items.map(item => \`- [\${item.title}](\${BASE_URL}/magazine/\${item.contentType}/\${item.slug}/) - \${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}\`).join('\n')}
-
-**Count:** \${category.items.length} item(s)
-
----
-
-**Source:** \${BASE_URL}/category/\${category.slug}/
-\`;
-    const mdPath = path.join(DOCS_DIR, 'markdown', 'category', category.slug);
-    fs.mkdirSync(mdPath, { recursive: true });
-    fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
-    mdCount++;
-  });
-  
-  // Generate .md for tags
-  Object.values(entities.tags).forEach(tag => {
-    const mdContent = \`# Tag: #\${tag.name}
-
-## Items tagged #\${tag.name}
-
-\${tag.items.map(item => \`- [\${item.title}](\${BASE_URL}/magazine/\${item.contentType}/\${item.slug}/) - \${item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''}\`).join('\n')}
-
-**Count:** \${tag.items.length} item(s)
-
----
-
-**Source:** \${BASE_URL}/tag/\${tag.slug}/
-\`;
-    const mdPath = path.join(DOCS_DIR, 'markdown', 'tag', tag.slug);
-    fs.mkdirSync(mdPath, { recursive: true });
-    fs.writeFileSync(path.join(mdPath, 'index.md'), mdContent);
-    mdCount++;
-  });
-  
-  console.log(\`📄 Generated \${mdCount} markdown files for LLM consumption\`);
-  return mdCount;
-}
-
 // Parse content markdown files
 function parseContent(contentType) {
   const contentDir = path.join(CONTENT_DIR, contentType);
@@ -225,13 +103,6 @@ function generateBreadcrumbSchema(pathArray) {
 }
 
 function generateArticleSchema(item, url) {
-  const author = {
-    "@type": "Person",
-    name: item.author || 'Staff',
-    url: item.authorUrl || `${BASE_URL}/author/${(item.author || 'Staff').toLowerCase().replace(/\s+/g, '-')}/`
-  };
-  if (item.authorImage) author.image = item.authorImage;
-  
   const schema = {
     "@context": "https://schema.org",
     "@type": "NewsArticle",
@@ -239,38 +110,8 @@ function generateArticleSchema(item, url) {
     description: item.description || '',
     image: item.image || '',
     datePublished: item.date?.toISOString() || '',
-    dateModified: item.dateModified?.toISOString() || item.date?.toISOString() || '',
-    author: author,
-    publisher: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: BASE_URL,
-      logo: {
-        "@type": "ImageObject",
-        url: BASE_URL + '/logo.png',
-        width: 250,
-        height: 60
-      }
-    },
-    mainEntityOfPage: { "@type": "WebPage", "@id": url },
-    keywords: item.keywords || '',
-    articleSection: item.category || 'General'
-  };
-  return `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`;
-}
-
-function generateOrganizationSchema() {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: SITE_NAME,
-    url: BASE_URL,
-    description: SITE_DESC,
-    logo: BASE_URL + '/logo.png',
-    sameAs: [
-      "https://twitter.com/yourhandle",
-      "https://linkedin.com/company/einp"
-    ]
+    author: { "@type": "Person", name: (item.author || 'Staff') },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url }
   };
   return `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>`;
 }
@@ -278,68 +119,14 @@ function generateOrganizationSchema() {
 // Fill template with data
 function fillTemplate(template, item, extras = {}) {
   let result = template;
-  const fields = {
-    title: 'Untitled',
-    description: '',
-    slug: '',
-    language: 'en',
-    content: '',
-    author: 'Staff',
-    publishedDate: item.date instanceof Date ? item.date.toISOString().split('T')[0] : '',
-    publishedDateFormatted: item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : '',
-    modifiedDate: item.dateModified instanceof Date ? item.dateModified.toISOString().split('T')[0] : (item.date instanceof Date ? item.date.toISOString().split('T')[0] : ''),
-    modifiedDateFormatted: item.dateModified instanceof Date ? item.dateModified.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : (item.date instanceof Date ? item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : ''),
-    date: item.date instanceof Date ? item.date.toISOString() : '',
-    category: '',
-    keywords: '',
-    image: item.image || item.cover || '',
-    imageAlt: '',
-    imageCaption: '',
-    authorBio: '',
-    cover: item.cover || item.image || '',
-    isbn: '',
-    pages: '',
-    publisher: '',
-    publishDate: item.publishDate || (item.date instanceof Date ? item.date.toISOString().split('T')[0] : ''),
-    subtitle: '',
-    contentType: item.contentType || '',
-    year: item.year || '',
-    role: item.role || '',
-    website: item.website || '',
-    twitter: item.twitter || '',
-    linkedin: item.linkedin || '',
-    code: item.code || '',
-    name: item.name || item.title || ''
-  };
+  const fields = { title: 'Untitled', description: '', slug: '', language: '', content: '', author: 'Staff',
+    publishedDate: '', publishedDateFormatted: '', category: '', keywords: '', image: '', imageAlt: '', imageCaption: '', authorBio: '' };
   Object.keys(fields).forEach(k => {
-    const value = item[k] !== undefined && item[k] !== null && item[k] !== '' ? item[k] : fields[k];
-    result = result.replace(new RegExp(`{{${k}}}`, 'g'), String(value));
+    result = result.replace(new RegExp(`{{${k}}}`, 'g'), item[k] || fields[k]);
   });
-  // Base URL (for canonical, og:url, etc.)
-  result = result.replace(/{{baseUrl}}/g, BASE_URL);
-  // OG tags
-  const ogType = item.contentType === 'article' || item.contentType === 'perspective' ? 'article' : 'website';
-  result = result.replace(/{{ogType}}/g, ogType);
-  const ogArticlePublished = item.date ? `<meta property="article:published_time" content="${item.date.toISOString()}">` : '';
-  result = result.replace(/{{ogArticlePublished}}/g, ogArticlePublished);
-  const ogArticleModified = item.dateModified ? `<meta property="article:modified_time" content="${item.dateModified.toISOString()}">` : (item.date ? `<meta property="article:modified_time" content="${item.date.toISOString()}">` : '');
-  result = result.replace(/{{ogArticleModified}}/g, ogArticleModified);
-  const ogArticleAuthor = item.author ? `<meta property="article:author" content="${item.author}">` : '';
-  result = result.replace(/{{ogArticleAuthor}}/g, ogArticleAuthor);
-  const ogArticleSection = item.category ? `<meta property="article:section" content="${item.category}">` : '';
-  result = result.replace(/{{ogArticleSection}}/g, ogArticleSection);
-  // Twitter Card
-  const twitterCard = 'summary_large_image';
-  result = result.replace(/{{twitterCard}}/g, twitterCard);
-  const twitterCreator = item.twitter ? `@${item.twitter.replace(/^@/, '')}` : '@einperspective';
-  result = result.replace(/{{twitterCreator}}/g, twitterCreator);
-  // Structural tags
   result = result.replace(/{{hreflang}}/g, extras.hreflang || '');
   result = result.replace(/{{jsonLdSchema}}/g, extras.jsonLd || '');
   result = result.replace(/{{canonicalUrl}}/g, extras.canonical || '');
-  result = result.replace(/{{magazineUrl}}/g, extras.magazineUrl || '');
-  result = result.replace(/{{authorInfo}}/g, item.author ? `<p class="text-muted text-sm mb-2">By <span class="font-bold"><a href="/author/${(item.author || 'staff').toLowerCase().replace(/\s+/g, '-')}" class="hover:underline">${item.author}</a></span></p>` : '');
-  result = result.replace(/{{dateInfo}}/g, item.date instanceof Date ? `<p class="text-muted text-sm">${item.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>` : '');
   return result;
 }
 
@@ -438,118 +225,6 @@ ${urls.map(u => `  <url><loc>${u.loc}</loc><lastmod>${u.lastmod}</lastmod><chang
   console.log(`📍 Generated sitemaps (${urls.length} URLs)`);
 }
 
-// Extract and index entities
-function extractEntities(allContent) {
-  const authors = {};
-  const categories = {};
-  const tags = {};
-  
-  Object.values(allContent).forEach(items => {
-    items.forEach(item => {
-      if (item.author) {
-        const slug = item.author.toLowerCase().replace(/\s+/g, '-');
-        if (!authors[slug]) authors[slug] = { name: item.author, items: [], slug };
-        authors[slug].items.push(item);
-      }
-      if (item.category) {
-        const slug = item.category.toLowerCase().replace(/\s+/g, '-');
-        if (!categories[slug]) categories[slug] = { name: item.category, items: [], slug };
-        categories[slug].items.push(item);
-      }
-      if (item.keywords) {
-        (item.keywords || '').split(',').forEach(kw => {
-          const tag = kw.trim();
-          if (tag) {
-            const slug = tag.toLowerCase().replace(/\s+/g, '-');
-            if (!tags[slug]) tags[slug] = { name: tag, items: [], slug };
-            tags[slug].items.push(item);
-          }
-        });
-      }
-    });
-  });
-  return { authors, categories, tags };
-}
-
-// Generate entity pages
-function generateEntityPages(entities, allRoutes, totalPages) {
-  let pages = totalPages;
-  
-  console.log('👤 Generating author pages...');
-  Object.values(entities.authors).forEach(author => {
-    const itemsList = author.items.map(item => `
-    <div class="border border-accent p-4 rounded">
-      <h3 class="font-serif text-lg font-bold mb-2"><a href="/magazine/${item.contentType}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
-      <p class="text-muted text-sm">${item.date?.toLocaleDateString() || ''}</p>
-    </div>`).join('');
-    
-    const page = authorTemplate
-      .replace(/{{authorName}}/g, author.name)
-      .replace(/{{itemCount}}/g, author.items.length)
-      .replace(/{{pluralS}}/g, author.items.length === 1 ? '' : 's')
-      .replace(/{{itemsList}}/g, itemsList)
-      .replace(/{{canonicalUrl}}/g, `${BASE_URL}/author/${author.slug}/`)
-      .replace(/{{jsonLdSchema}}/g, generateBreadcrumbSchema(['author', author.slug]))
-      .replace(/{{relatedAuthors}}/g, '');
-    
-    const authPath = path.join(DOCS_DIR, 'author', author.slug);
-    fs.mkdirSync(authPath, { recursive: true });
-    fs.writeFileSync(path.join(authPath, 'index.html'), page);
-    pages++;
-    allRoutes.push({ label: author.name, url: `${BASE_URL}/author/${author.slug}/`, type: 'author', description: `${author.items.length} articles by ${author.name}` });
-  });
-  
-  console.log('🏷️  Generating category pages...');
-  Object.values(entities.categories).forEach(category => {
-    const itemsList = category.items.map(item => `
-    <div class="border border-accent p-4 rounded">
-      <h3 class="font-serif text-lg font-bold mb-2"><a href="/magazine/${item.contentType}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
-      <p class="text-muted text-sm">${item.date?.toLocaleDateString() || ''}</p>
-    </div>`).join('');
-    
-    const page = categoryTemplate
-      .replace(/{{categoryName}}/g, category.name)
-      .replace(/{{itemCount}}/g, category.items.length)
-      .replace(/{{pluralS}}/g, category.items.length === 1 ? '' : 's')
-      .replace(/{{itemsList}}/g, itemsList)
-      .replace(/{{canonicalUrl}}/g, `${BASE_URL}/category/${category.slug}/`)
-      .replace(/{{jsonLdSchema}}/g, generateBreadcrumbSchema(['category', category.slug]))
-      .replace(/{{relatedCategories}}/g, '');
-    
-    const catPath = path.join(DOCS_DIR, 'category', category.slug);
-    fs.mkdirSync(catPath, { recursive: true });
-    fs.writeFileSync(path.join(catPath, 'index.html'), page);
-    pages++;
-    allRoutes.push({ label: category.name, url: `${BASE_URL}/category/${category.slug}/`, type: 'category', description: `${category.items.length} items in ${category.name}` });
-  });
-  
-  console.log('🔖 Generating tag pages...');
-  Object.values(entities.tags).forEach(tag => {
-    const itemsList = tag.items.map(item => `
-    <div class="border border-accent p-4 rounded">
-      <h3 class="font-serif text-lg font-bold mb-2"><a href="/magazine/${item.contentType}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
-      <p class="text-muted text-sm">${item.date?.toLocaleDateString() || ''}</p>
-    </div>`).join('');
-    
-    const page = tagTemplate
-      .replace(/{{tagName}}/g, tag.name)
-      .replace(/{{itemCount}}/g, tag.items.length)
-      .replace(/{{pluralS}}/g, tag.items.length === 1 ? '' : 's')
-      .replace(/{{itemsList}}/g, itemsList)
-      .replace(/{{canonicalUrl}}/g, `${BASE_URL}/tag/${tag.slug}/`)
-      .replace(/{{jsonLdSchema}}/g, generateBreadcrumbSchema(['tag', tag.slug]))
-      .replace(/{{relatedTags}}/g, '');
-    
-    const tagPath = path.join(DOCS_DIR, 'tag', tag.slug);
-    fs.mkdirSync(tagPath, { recursive: true });
-    fs.writeFileSync(path.join(tagPath, 'index.html'), page);
-    pages++;
-    allRoutes.push({ label: `#${tag.name}`, url: `${BASE_URL}/tag/${tag.slug}/`, type: 'tag', description: `${tag.items.length} items tagged #${tag.name}` });
-  });
-  
-  return pages;
-}
-
 // Count HTML files
 function countHtmlFiles(dir) {
   let count = 0;
@@ -562,54 +237,6 @@ function countHtmlFiles(dir) {
   }
   traverse(dir);
   return count;
-}
-
-// Generate RSS feeds
-function generateRssFeeds(allContent) {
-  // Main feed: all articles and perspectives
-  const feed = new Feed({
-    title: SITE_NAME,
-    description: SITE_DESC,
-    id: BASE_URL,
-    link: BASE_URL,
-    language: 'en',
-    favicon: BASE_URL + '/favicon.ico',
-    copyright: `${new Date().getFullYear()} Everything in Perspective`
-  });
-
-  // Add articles
-  (allContent.articles || []).forEach(article => {
-    feed.addItem({
-      title: article.title || 'Untitled',
-      description: article.description || '',
-      id: `${BASE_URL}/magazine/article/${article.slug}/`,
-      link: `${BASE_URL}/magazine/article/${article.slug}/`,
-      content: article.content,
-      author: [{ name: article.author || 'Staff' }],
-      date: article.date || new Date(),
-      category: article.category ? [{ name: article.category }] : [],
-      image: article.image || ''
-    });
-  });
-
-  // Add perspectives
-  (allContent.perspectives || []).forEach(perspective => {
-    feed.addItem({
-      title: perspective.title || 'Untitled',
-      description: perspective.description || '',
-      id: `${BASE_URL}/magazine/perspective/${perspective.slug}/`,
-      link: `${BASE_URL}/magazine/perspective/${perspective.slug}/`,
-      content: perspective.content,
-      author: [{ name: perspective.author || 'Staff' }],
-      date: perspective.date || new Date(),
-      category: perspective.category ? [{ name: perspective.category }] : []
-    });
-  });
-
-  // Write RSS and Atom feeds
-  fs.writeFileSync(path.join(DOCS_DIR, 'feed.xml'), feed.rss2());
-  fs.writeFileSync(path.join(DOCS_DIR, 'feed.atom'), feed.atom1());
-  console.log('📡 Generated RSS/Atom feeds');
 }
 
 // MAIN BUILD FUNCTION
@@ -647,46 +274,7 @@ function build() {
         // Linked-data view
         const ldPath = path.join(DOCS_DIR, 'linked-data', ct.singular, item.slug);
         fs.mkdirSync(ldPath, { recursive: true });
-        const tagNames = (item.keywords || '').split(',').map(tag => tag.trim()).filter(Boolean);
-        const authorSlug = (item.author || 'staff').toLowerCase().replace(/\s+/g, '-');
-        const categorySlug = (item.category || '').toLowerCase().replace(/\s+/g, '-');
-        const relatedByAuthor = item.author ? items.filter(candidate => candidate.slug !== item.slug && candidate.author === item.author).slice(0, 5) : [];
-        const relatedByCategory = item.category ? items.filter(candidate => candidate.slug !== item.slug && candidate.category === item.category).slice(0, 5) : [];
-        const relatedContentHtml = [...relatedByAuthor, ...relatedByCategory]
-          .slice(0, 6)
-          .map(related => `<li><a href="/linked-data/${ct.singular}/${related.slug}/">${related.title}</a></li>`)
-          .join('');
-        const tagsHtml = tagNames.length ? `<div class="relationship-card"><h3>Tags</h3><ul>${tagNames.map(tag => `<li><a href="/tag/${tag.toLowerCase().replace(/\s+/g, '-')}">#${tag}</a></li>`).join('')}</ul></div>` : '<div class="relationship-card"><h3>Tags</h3><p class="text-muted text-sm">No tags listed.</p></div>';
-        const authorsSection = item.author ? `<div class="relationship-card"><h3>Author</h3><ul><li><a href="/author/${authorSlug}/">${item.author}</a></li></ul></div>` : '<div class="relationship-card"><h3>Author</h3><p class="text-muted text-sm">No author listed.</p></div>';
-        const categoriesSection = item.category ? `<div class="relationship-card"><h3>Category</h3><ul><li><a href="/category/${categorySlug}/">${item.category}</a></li></ul></div>` : '<div class="relationship-card"><h3>Category</h3><p class="text-muted text-sm">No category listed.</p></div>';
-        const relatedContentSection = `<div class="relationship-card"><h3>Related ${ct.plural}</h3>${relatedContentHtml ? `<ul>${relatedContentHtml}</ul>` : '<p class="text-muted text-sm">No closely related items yet.</p>'}</div>`;
-        const backlinksSection = relatedByAuthor.length || relatedByCategory.length
-          ? `<div class="space-y-3">${[...relatedByAuthor, ...relatedByCategory].slice(0, 8).map(related => `<div class="border border-accent p-4 rounded"><a href="/linked-data/${ct.singular}/${related.slug}/" class="font-bold hover:underline">${related.title}</a><p class="text-sm text-muted mt-1">Shared author or category relationship</p></div>`).join('')}</div>`
-          : '<p class="text-muted text-sm">No backlinks indexed yet.</p>';
-        const frontlinksSection = `<div class="space-y-3">${[
-          item.author ? `<div class="border border-accent p-4 rounded"><a href="/author/${authorSlug}/" class="font-bold hover:underline">Author: ${item.author}</a></div>` : '',
-          item.category ? `<div class="border border-accent p-4 rounded"><a href="/category/${categorySlug}/" class="font-bold hover:underline">Category: ${item.category}</a></div>` : '',
-          ...tagNames.map(tag => `<div class="border border-accent p-4 rounded"><a href="/tag/${tag.toLowerCase().replace(/\s+/g, '-')}" class="font-bold hover:underline">Tag: #${tag}</a></div>`)
-        ].filter(Boolean).join('')}</div>`;
-        const ldExtras = {
-          canonical: `${BASE_URL}/linked-data/${ct.singular}/${item.slug}/`,
-          magazineUrl: `${BASE_URL}/magazine/${ct.singular}/${item.slug}/`,
-          jsonLd: breadcrumb + jsonLd,
-        };
-        let linkedDataHtml = fillTemplate(linkedDataDetailTemplate, { ...item, contentType: ct.singular }, ldExtras);
-        linkedDataHtml = linkedDataHtml.replace(/{{authorsSection}}/g, authorsSection);
-        linkedDataHtml = linkedDataHtml.replace(/{{categoriesSection}}/g, categoriesSection);
-        linkedDataHtml = linkedDataHtml.replace(/{{tagsSection}}/g, tagsHtml);
-        linkedDataHtml = linkedDataHtml.replace(/{{relatedContentSection}}/g, relatedContentSection);
-        linkedDataHtml = linkedDataHtml.replace(/{{backlinksSection}}/g, backlinksSection);
-        linkedDataHtml = linkedDataHtml.replace(/{{frontlinksSection}}/g, frontlinksSection);
-        linkedDataHtml = linkedDataHtml.replace(/{{authorCount}}/g, item.author ? '1' : '0');
-        linkedDataHtml = linkedDataHtml.replace(/{{categoryCount}}/g, item.category ? '1' : '0');
-        linkedDataHtml = linkedDataHtml.replace(/{{tagCount}}/g, String(tagNames.length));
-        linkedDataHtml = linkedDataHtml.replace(/{{yCategoryPlural}}/g, item.category ? 'y' : 'ies');
-        linkedDataHtml = linkedDataHtml.replace(/{{tagPlural}}/g, tagNames.length === 1 ? '' : 's');
-        linkedDataHtml = linkedDataHtml.replace(/{{connectionCount}}/g, String((item.author ? 1 : 0) + (item.category ? 1 : 0) + tagNames.length + [...relatedByAuthor, ...relatedByCategory].slice(0, 8).length));
-        fs.writeFileSync(path.join(ldPath, 'index.html'), linkedDataHtml);
+        fs.writeFileSync(path.join(ldPath, 'index.html'), filledTemplate);
         totalPages++;
         allRoutes.push({ label: `${item.title} (LD)`, url: `${BASE_URL}/linked-data/${ct.singular}/${item.slug}/`, type: ct.singular, description: item.description });
       });
@@ -758,75 +346,8 @@ function build() {
   totalPages++;
   allRoutes.push({ label: 'Home', url: `${BASE_URL}/`, type: 'home', description: SITE_DESC });
 
-  // PHASE 5: Generate search results page
-  console.log('🔍 Generating search page...');
-  const searchPage = searchResultsTemplate.replace('{{SEARCH_INDEX_JSON}}', JSON.stringify(searchIndex));
-  const searchPath = path.join(DOCS_DIR, 'search');
-  fs.mkdirSync(searchPath, { recursive: true });
-  fs.writeFileSync(path.join(searchPath, 'index.html'), searchPage);
-  totalPages++;
-  allRoutes.push({ label: 'Search', url: `${BASE_URL}/search/`, type: 'search', description: 'Search all content' });
-
-  // PHASE 6: Generate entity pages (authors, categories, tags)
-  const entities = extractEntities(allContent);
-  totalPages = generateEntityPages(entities, allRoutes, totalPages);
-
-  // PHASE 6B: Generate markdown files for LLM consumption
-  generateMarkdownFiles(allContent, entities);
-
-  // PHASE 7: Sitemaps
+  // PHASE 5: Sitemaps
   generateSitemaps(allRoutes);
-
-  // PHASE 8: RSS feeds
-  generateRssFeeds(allContent);
-
-  // PHASE 9: Generate static URL redirect pages
-  console.log('🔗 Generating URL redirect pages...');
-  const redirects = [
-    { from: 'mag', to: 'magazine' },
-    { from: 'ld', to: 'linked-data' }
-  ];
-  
-  // Redirect collection pages
-  redirects.forEach(({ from, to }) => {
-    CONTENT_REGISTRY.forEach(ct => {
-      // Collection redirect: /mag/articles -> /magazine/articles
-      const colRedirectHtml = `<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="refresh" content="0; url=/${to}/${ct.plural}/">
-  <link rel="canonical" href="${BASE_URL}/${to}/${ct.plural}/">
-  <title>Redirecting...</title>
-</head>
-<body>Redirecting to <a href="/${to}/${ct.plural}/">${to}/${ct.plural}/</a></body>
-</html>`;
-      const colRedirPath = path.join(DOCS_DIR, from, ct.plural);
-      fs.mkdirSync(colRedirPath, { recursive: true });
-      fs.writeFileSync(path.join(colRedirPath, 'index.html'), colRedirectHtml);
-      totalPages++;
-    });
-    
-    // Item detail redirects: /mag/article/slug -> /magazine/article/slug
-    CONTENT_REGISTRY.forEach(ct => {
-      const items = allContent[ct.folder] || [];
-      items.forEach(item => {
-        const itemRedirectHtml = `<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="refresh" content="0; url=/${to}/${ct.singular}/${item.slug}/">
-  <link rel="canonical" href="${BASE_URL}/${to}/${ct.singular}/${item.slug}/">
-  <title>Redirecting...</title>
-</head>
-<body>Redirecting to <a href="/${to}/${ct.singular}/${item.slug}/">${to}/${ct.singular}/${item.slug}/</a></body>
-</html>`;
-        const itemRedirPath = path.join(DOCS_DIR, from, ct.singular, item.slug);
-        fs.mkdirSync(itemRedirPath, { recursive: true });
-        fs.writeFileSync(path.join(itemRedirPath, 'index.html'), itemRedirectHtml);
-        totalPages++;
-      });
-    });
-  });
-  console.log('🔗 Generated ${redirects.length * CONTENT_REGISTRY.length * 2} redirect pages');
 
   console.timeEnd('Build');
   const htmlFiles = countHtmlFiles(DOCS_DIR);
