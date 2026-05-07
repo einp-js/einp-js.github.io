@@ -208,18 +208,6 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: page
 Description: N/A
 
-### Contact Us (Mag)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/contact-us/
-Type: page
-Description: N/A
-
-### Contact Us (LD)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/
-Type: page
-Description: N/A
-
 ### About Everything in Perspective (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/about/
@@ -231,6 +219,18 @@ Description: Learn about our mission to provide context and nuance on global tre
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/
 Type: page
 Description: Learn about our mission to provide context and nuance on global trends
+
+### Contact Us (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/contact-us/
+Type: page
+Description: N/A
+
+### Contact Us (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/
+Type: page
+Description: N/A
 
 ### Daniel Kahneman (Mag)
 
