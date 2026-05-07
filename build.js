@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const fm = require('front-matter');
 const { marked } = require('marked');
+const { Feed } = require('feed');
 
 const DOCS_DIR = './docs';
 const CONTENT_DIR = './content';
@@ -355,6 +356,54 @@ function countHtmlFiles(dir) {
   return count;
 }
 
+// Generate RSS feeds
+function generateRssFeeds(allContent) {
+  // Main feed: all articles and perspectives
+  const feed = new Feed({
+    title: SITE_NAME,
+    description: SITE_DESC,
+    id: BASE_URL,
+    link: BASE_URL,
+    language: 'en',
+    favicon: BASE_URL + '/favicon.ico',
+    copyright: `${new Date().getFullYear()} Everything in Perspective`
+  });
+
+  // Add articles
+  (allContent.articles || []).forEach(article => {
+    feed.addItem({
+      title: article.title || 'Untitled',
+      description: article.description || '',
+      id: `${BASE_URL}/magazine/article/${article.slug}/`,
+      link: `${BASE_URL}/magazine/article/${article.slug}/`,
+      content: article.content,
+      author: [{ name: article.author || 'Staff' }],
+      date: article.date || new Date(),
+      category: article.category ? [{ name: article.category }] : [],
+      image: article.image || ''
+    });
+  });
+
+  // Add perspectives
+  (allContent.perspectives || []).forEach(perspective => {
+    feed.addItem({
+      title: perspective.title || 'Untitled',
+      description: perspective.description || '',
+      id: `${BASE_URL}/magazine/perspective/${perspective.slug}/`,
+      link: `${BASE_URL}/magazine/perspective/${perspective.slug}/`,
+      content: perspective.content,
+      author: [{ name: perspective.author || 'Staff' }],
+      date: perspective.date || new Date(),
+      category: perspective.category ? [{ name: perspective.category }] : []
+    });
+  });
+
+  // Write RSS and Atom feeds
+  fs.writeFileSync(path.join(DOCS_DIR, 'feed.xml'), feed.rss2());
+  fs.writeFileSync(path.join(DOCS_DIR, 'feed.atom'), feed.atom1());
+  console.log('📡 Generated RSS/Atom feeds');
+}
+
 // MAIN BUILD FUNCTION
 function build() {
   console.time('Build');
@@ -477,6 +526,9 @@ function build() {
 
   // PHASE 7: Sitemaps
   generateSitemaps(allRoutes);
+
+  // PHASE 8: RSS feeds
+  generateRssFeeds(allContent);
 
   console.timeEnd('Build');
   const htmlFiles = countHtmlFiles(DOCS_DIR);

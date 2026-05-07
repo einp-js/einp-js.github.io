@@ -108,15 +108,6 @@
     "date": "2026-05-04"
   },
   {
-    "id": "page-faq",
-    "title": "Frequently Asked Questions",
-    "description": "",
-    "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/faq/",
-    "author": "Staff",
-    "date": "2026-05-07"
-  },
-  {
     "id": "page-privacy-policy",
     "title": "Privacy Policy",
     "description": "",
@@ -144,11 +135,11 @@
     "date": "2026-05-07"
   },
   {
-    "id": "page-contact-us",
-    "title": "Contact Us",
+    "id": "page-faq",
+    "title": "Frequently Asked Questions",
     "description": "",
     "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/contact-us/",
+    "url": "/everythinginperspective_purejs/magazine/page/faq/",
     "author": "Staff",
     "date": "2026-05-07"
   },
@@ -158,6 +149,15 @@
     "description": "Learn about our mission to provide context and nuance on global trends",
     "type": "page",
     "url": "/everythinginperspective_purejs/magazine/page/about/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
+    "id": "page-contact-us",
+    "title": "Contact Us",
+    "description": "",
+    "type": "page",
+    "url": "/everythinginperspective_purejs/magazine/page/contact-us/",
     "author": "Staff",
     "date": "2026-05-07"
   }

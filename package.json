@@ -14,5 +14,8 @@
   "devDependencies": {
     "front-matter": "^4.0.2",
     "marked": "^9.0.0"
+  },
+  "dependencies": {
+    "feed": "^5.2.1"
   }
 }

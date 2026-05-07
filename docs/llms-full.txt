@@ -148,18 +148,6 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: perspective
 Description: Understanding ChatGPT's impact beyond the hype—historical context, labor implications, and systemic changes.
 
-### Frequently Asked Questions (Mag)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/faq/
-Type: page
-Description: N/A
-
-### Frequently Asked Questions (LD)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/faq/
-Type: page
-Description: N/A
-
 ### Privacy Policy (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/
@@ -196,15 +184,15 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: page
 Description: N/A
 
-### Contact Us (Mag)
+### Frequently Asked Questions (Mag)
 
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/contact-us/
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/faq/
 Type: page
 Description: N/A
 
-### Contact Us (LD)
+### Frequently Asked Questions (LD)
 
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/faq/
 Type: page
 Description: N/A
 
@@ -219,6 +207,18 @@ Description: Learn about our mission to provide context and nuance on global tre
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/
 Type: page
 Description: Learn about our mission to provide context and nuance on global trends
+
+### Contact Us (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/contact-us/
+Type: page
+Description: N/A
+
+### Contact Us (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/
+Type: page
+Description: N/A
 
 ### articles (Mag)
 
