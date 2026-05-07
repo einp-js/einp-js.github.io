@@ -148,6 +148,30 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: perspective
 Description: Understanding ChatGPT's impact beyond the hype—historical context, labor implications, and systemic changes.
 
+### Thinking, Fast and Slow (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/book/thinking-fast-and-slow/
+Type: book
+Description: Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.
+
+### Thinking, Fast and Slow (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/book/thinking-fast-and-slow/
+Type: book
+Description: Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.
+
+### Privacy Policy (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/
+Type: page
+Description: N/A
+
+### Privacy Policy (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/privacy-policy/
+Type: page
+Description: N/A
+
 ### Terms & Conditions (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/terms-conditions/
@@ -169,18 +193,6 @@ Description: N/A
 ### Frequently Asked Questions (LD)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/faq/
-Type: page
-Description: N/A
-
-### Privacy Policy (Mag)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/
-Type: page
-Description: N/A
-
-### Privacy Policy (LD)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/privacy-policy/
 Type: page
 Description: N/A
 
@@ -220,6 +232,30 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: page
 Description: Learn about our mission to provide context and nuance on global trends
 
+### Daniel Kahneman (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/person/daniel-kahneman/
+Type: person
+Description: N/A
+
+### Daniel Kahneman (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/person/daniel-kahneman/
+Type: person
+Description: N/A
+
+### Spanish (Español) (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/language/spanish/
+Type: language
+Description: Spanish is a Romance language spoken by over 500 million people worldwide, making it the second-most spoken language by number of native speakers. It is the official language of Spain and most countries in Central and South America.
+
+### Spanish (Español) (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/language/spanish/
+Type: language
+Description: Spanish is a Romance language spoken by over 500 million people worldwide, making it the second-most spoken language by number of native speakers. It is the official language of Spain and most countries in Central and South America.
+
 ### articles (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/articles/
@@ -244,6 +280,18 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: collection
 Description: Linked data: perspectives
 
+### books (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/books/
+Type: collection
+Description: All books
+
+### books (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/books/
+Type: collection
+Description: Linked data: books
+
 ### pages (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/pages/
@@ -255,3 +303,27 @@ Description: All pages
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/pages/
 Type: collection
 Description: Linked data: pages
+
+### people (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/people/
+Type: collection
+Description: All people
+
+### people (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/people/
+Type: collection
+Description: Linked data: people
+
+### languages (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/languages/
+Type: collection
+Description: All languages
+
+### languages (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/languages/
+Type: collection
+Description: Linked data: languages

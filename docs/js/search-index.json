@@ -108,6 +108,24 @@
     "date": "2026-05-04"
   },
   {
+    "id": "book-thinking-fast-and-slow",
+    "title": "Thinking, Fast and Slow",
+    "description": "Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.",
+    "type": "book",
+    "url": "/everythinginperspective_purejs/magazine/book/thinking-fast-and-slow/",
+    "author": "Daniel Kahneman",
+    "date": "2026-05-07"
+  },
+  {
+    "id": "page-privacy-policy",
+    "title": "Privacy Policy",
+    "description": "",
+    "type": "page",
+    "url": "/everythinginperspective_purejs/magazine/page/privacy-policy/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
     "id": "page-terms-conditions",
     "title": "Terms & Conditions",
     "description": "",
@@ -122,15 +140,6 @@
     "description": "",
     "type": "page",
     "url": "/everythinginperspective_purejs/magazine/page/faq/",
-    "author": "Staff",
-    "date": "2026-05-07"
-  },
-  {
-    "id": "page-privacy-policy",
-    "title": "Privacy Policy",
-    "description": "",
-    "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/privacy-policy/",
     "author": "Staff",
     "date": "2026-05-07"
   },
@@ -158,6 +167,24 @@
     "description": "Learn about our mission to provide context and nuance on global trends",
     "type": "page",
     "url": "/everythinginperspective_purejs/magazine/page/about/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
+    "id": "person-daniel-kahneman",
+    "title": "Daniel Kahneman",
+    "description": "",
+    "type": "person",
+    "url": "/everythinginperspective_purejs/magazine/person/daniel-kahneman/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
+    "id": "language-spanish",
+    "title": "Spanish (Español)",
+    "description": "Spanish is a Romance language spoken by over 500 million people worldwide, making it the second-most spoken language by number of native speakers. It is the official language of Spain and most countries in Central and South America.",
+    "type": "language",
+    "url": "/everythinginperspective_purejs/magazine/language/spanish/",
     "author": "Staff",
     "date": "2026-05-07"
   }
