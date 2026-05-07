@@ -29,6 +29,7 @@ CONTENT_REGISTRY.forEach(ct => {
 });
 const magazineCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'magazine-collection.html'), 'utf-8');
 const linkedDataCollectionTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'linked-data-collection.html'), 'utf-8');
+const searchResultsTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'search-results.html'), 'utf-8');
 const homeTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'home.html'), 'utf-8');
 const config = JSON.parse(fs.readFileSync(path.join(CONTENT_DIR, 'config.json'), 'utf-8'));
 
@@ -346,7 +347,16 @@ function build() {
   totalPages++;
   allRoutes.push({ label: 'Home', url: `${BASE_URL}/`, type: 'home', description: SITE_DESC });
 
-  // PHASE 5: Sitemaps
+  // PHASE 5: Generate search results page
+  console.log('🔍 Generating search page...');
+  const searchPage = searchResultsTemplate.replace('{{SEARCH_INDEX_JSON}}', JSON.stringify(searchIndex));
+  const searchPath = path.join(DOCS_DIR, 'search');
+  fs.mkdirSync(searchPath, { recursive: true });
+  fs.writeFileSync(path.join(searchPath, 'index.html'), searchPage);
+  totalPages++;
+  allRoutes.push({ label: 'Search', url: `${BASE_URL}/search/`, type: 'search', description: 'Search all content' });
+
+  // PHASE 6: Sitemaps
   generateSitemaps(allRoutes);
 
   console.timeEnd('Build');
