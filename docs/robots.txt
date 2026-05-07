@@ -2,17 +2,14 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
-Disallow: /private/
 
-# Sitemap
-Sitemap: https://everythinginperspective.github.io/sitemap.xml
+Sitemap: https://everythinginperspective.github.io/everythinginperspective_purejs/sitemap.xml
 
-# AI crawlers - allow for AI optimization
 User-agent: GPTBot
 Allow: /
 
-User-agent: Claude-Web
+User-agent: CCBot
 Allow: /
 
-User-agent: Perplexity
+User-agent: anthropic-ai
 Allow: /

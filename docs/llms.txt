@@ -1,25 +1,25 @@
-# Everything in Perspective - AI LLM Discovery
+# Everything in Perspective
 
-> A magazine exploring trends and global topics with depth, nuance, and historical context.
+> Essays on trends, context & nuance
 
-Canonical Origin: https://everythinginperspective.github.io
+Canonical Origin: https://everythinginperspective.github.io/everythinginperspective_purejs
 
 ## LLM Resources
 
-- [Full Content](https://everythinginperspective.github.io/llms-full.txt)
-  Complete page content in markdown format.
-- [Sitemap](https://everythinginperspective.github.io/sitemap.xml)
-  XML sitemap for search engines and crawlers.
-- [Robots.txt](https://everythinginperspective.github.io/robots.txt)
-  Crawler rules and permissions.
+- [Full Content](https://everythinginperspective.github.io/everythinginperspective_purejs/llms-full.txt)
+- [Sitemap](/sitemap.xml)
 
-## Content Collections
+## Featured Routes
 
-- [Articles](https://everythinginperspective.github.io/magazine/articles/)
-  Essays exploring trends and topics
-- [Perspectives](https://everythinginperspective.github.io/magazine/perspectives/)
-  In-depth perspectives on global issues
-- [Books](https://everythinginperspective.github.io/magazine/books/)
-  Recommended reading and book reviews
-- [Pages](https://everythinginperspective.github.io/magazine/pages/)
-  Static content pages
+- Gemini and the AI Landscape: Beyond ChatGPT's First-Mover Advantage (Mag): https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/gemini-ai-competition/
+- Gemini and the AI Landscape: Beyond ChatGPT's First-Mover Advantage (LD): https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/gemini-ai-competition/
+- Google Maps: How Location Data Reshapes Urban Planning, Privacy, and Power (Mag): https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/google-maps-privacy-urban/
+- Google Maps: How Location Data Reshapes Urban Planning, Privacy, and Power (LD): https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/google-maps-privacy-urban/
+- Instagram and Mental Health: The Hidden Cost of Connection (Mag): https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/instagram-mental-health/
+- Instagram and Mental Health: The Hidden Cost of Connection (LD): https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/instagram-mental-health/
+- Cricket's Global Obsession: Sport as Cultural Identity and Economic Power (Mag): https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/crickets-global-obsession/
+- Cricket's Global Obsession: Sport as Cultural Identity and Economic Power (LD): https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/crickets-global-obsession/
+- E-Commerce Giants: How Amazon and Flipkart Reshaped Retail and Labor (Mag): https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/ecommerce-giants-market-dominance/
+- E-Commerce Giants: How Amazon and Flipkart Reshaped Retail and Labor (LD): https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/ecommerce-giants-market-dominance/
+
+For complete content, see llms-full.txt
