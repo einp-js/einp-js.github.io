@@ -1,0 +1,18 @@
+# Everything in Perspective robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://everythinginperspective.github.io/sitemap.xml
+
+# AI crawlers - allow for AI optimization
+User-agent: GPTBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Perplexity
+Allow: /

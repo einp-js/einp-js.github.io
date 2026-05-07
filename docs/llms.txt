@@ -1,0 +1,25 @@
+# Everything in Perspective - AI LLM Discovery
+
+> A magazine exploring trends and global topics with depth, nuance, and historical context.
+
+Canonical Origin: https://everythinginperspective.github.io
+
+## LLM Resources
+
+- [Full Content](https://everythinginperspective.github.io/llms-full.txt)
+  Complete page content in markdown format.
+- [Sitemap](https://everythinginperspective.github.io/sitemap.xml)
+  XML sitemap for search engines and crawlers.
+- [Robots.txt](https://everythinginperspective.github.io/robots.txt)
+  Crawler rules and permissions.
+
+## Content Collections
+
+- [Articles](https://everythinginperspective.github.io/magazine/articles/)
+  Essays exploring trends and topics
+- [Perspectives](https://everythinginperspective.github.io/magazine/perspectives/)
+  In-depth perspectives on global issues
+- [Books](https://everythinginperspective.github.io/magazine/books/)
+  Recommended reading and book reviews
+- [Pages](https://everythinginperspective.github.io/magazine/pages/)
+  Static content pages
