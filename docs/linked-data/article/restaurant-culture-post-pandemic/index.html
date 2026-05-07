@@ -124,13 +124,22 @@
 <body class="bg-secondary text-primary">
   <!-- Header -->
   <header class="border-b border-accent bg-secondary">
-    <div class="max-w-6xl mx-auto px-6 py-12">
-      <nav class="flex justify-between items-start">
-        <a href="/" class="text-3xl font-serif font-bold">Everything in Perspective</a>
-        <div class="flex gap-8 text-sm">
-          <a href="/" class="hover:underline">Home</a>
-          <a href="/#essays" class="hover:underline">Essays</a>
-        </div>
+    <div class="max-w-6xl mx-auto px-6 py-8">
+      <!-- Top row: Logo + Search -->
+      <div class="flex justify-between items-center mb-4">
+        <a href="/" class="text-2xl font-serif font-bold">Everything in Perspective</a>
+        <form action="/search/" method="get" class="flex gap-2">
+          <input type="text" name="q" placeholder="Search articles..." class="px-4 py-2 border border-accent rounded text-sm w-48" />
+          <button type="submit" class="px-4 py-2 bg-accent text-secondary font-bold rounded hover:bg-primary text-sm">Search</button>
+        </form>
+      </div>
+      <!-- Navigation -->
+      <nav class="flex gap-6 text-sm flex-wrap">
+        <a href="/" class="hover:underline font-bold">Home</a>
+        <a href="/magazine/articles/" class="hover:underline">Articles</a>
+        <a href="/magazine/perspectives/" class="hover:underline">Perspectives</a>
+        <a href="/magazine/page/faq/" class="hover:underline">FAQ</a>
+        <a href="/magazine/page/contact-us/" class="hover:underline">Contact</a>
       </nav>
     </div>
   </header>

@@ -108,24 +108,6 @@
     "date": "2026-05-04"
   },
   {
-    "id": "page-terms-conditions",
-    "title": "Terms & Conditions",
-    "description": "",
-    "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/terms-conditions/",
-    "author": "Staff",
-    "date": "2026-05-07"
-  },
-  {
-    "id": "page-faq",
-    "title": "Frequently Asked Questions",
-    "description": "",
-    "type": "page",
-    "url": "/everythinginperspective_purejs/magazine/page/faq/",
-    "author": "Staff",
-    "date": "2026-05-07"
-  },
-  {
     "id": "page-privacy-policy",
     "title": "Privacy Policy",
     "description": "",
@@ -135,11 +117,29 @@
     "date": "2026-05-07"
   },
   {
+    "id": "page-terms-conditions",
+    "title": "Terms & Conditions",
+    "description": "",
+    "type": "page",
+    "url": "/everythinginperspective_purejs/magazine/page/terms-conditions/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
     "id": "page-cookie-policy",
     "title": "Cookie Policy",
     "description": "",
     "type": "page",
     "url": "/everythinginperspective_purejs/magazine/page/cookie-policy/",
+    "author": "Staff",
+    "date": "2026-05-07"
+  },
+  {
+    "id": "page-faq",
+    "title": "Frequently Asked Questions",
+    "description": "",
+    "type": "page",
+    "url": "/everythinginperspective_purejs/magazine/page/faq/",
     "author": "Staff",
     "date": "2026-05-07"
   },
