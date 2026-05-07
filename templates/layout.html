@@ -1,144 +1,159 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
+<html lang="{{language}}" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000000">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   <title>{{title}} | Everything in Perspective</title>
   <meta name="description" content="{{description}}">
-  <meta name="keywords" content="{{keywords}}">
-  <meta name="referrer" content="no-referrer-when-downgrade">
-  <link rel="canonical" href="{{baseUrl}}{{canonical}}">
+  <link rel="canonical" href="{{canonicalUrl}}">
   
   <!-- Open Graph -->
-  <meta property="og:type" content="{{ogType}}">
-  <meta property="og:site_name" content="Everything in Perspective">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{description}}">
-  <meta property="og:url" content="{{baseUrl}}{{canonical}}">
-  <meta property="og:image" content="{{image}}">
-  <meta property="og:image:alt" content="{{imageAlt}}">
-  <meta property="og:locale" content="en_US">
-  {{ogArticlePublished}}
-  {{ogArticleModified}}
-  {{ogArticleAuthor}}
-  {{ogArticleSection}}
+  <meta property="og:url" content="{{canonicalUrl}}">
+  <meta property="og:site_name" content="Everything in Perspective">
   
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="{{twitterCard}}">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{title}}">
   <meta name="twitter:description" content="{{description}}">
-  <meta name="twitter:image" content="{{image}}">
-  <meta name="twitter:image:alt" content="{{imageAlt}}">
-  <meta name="twitter:creator" content="{{twitterCreator}}">
-  <meta name="twitter:site" content="@einperspective">
-  
-  <!-- hreflang for i18n -->
-  {{hreflang}}
-  
-  <!-- RSS Feed -->
-  <link rel="alternate" type="application/rss+xml" title="Everything in Perspective Feed" href="/feed.xml">
   
   <!-- Structured Data -->
   {{jsonLdSchema}}
   
-  <!-- Theme CSS -->
-  <link rel="stylesheet" href="/css/theme.css">
+  <!-- Tailwind CSS -->
+  <link rel="stylesheet" href="/css/style.css">
   
-  <!-- Deferred scripts for performance -->
+  <!-- Deferred scripts -->
   <script src="/js/main.js" defer></script>
-  <script src="/js/nav.js" defer></script>
 </head>
-<body class="bg-secondary text-primary">
-  <!-- Navigation Drawer -->
-  <nav class="nav-drawer" id="nav-drawer">
-    <button class="nav-drawer-toggle" id="close-nav" aria-label="Close navigation">&times;</button>
-    <a href="/" class="block text-xl font-serif font-bold mb-8">Everything in Perspective</a>
-    <div class="space-y-4">
-      <a href="/" class="block">Home</a>
-      <a href="/page/faq/" class="block">FAQ</a>
-      <a href="/page/contact-us/" class="block">Contact</a>
-      <a href="/page/privacy-policy/" class="block">Privacy</a>
-      <a href="/page/terms-conditions/" class="block">Terms</a>
-      <a href="/page/cookie-policy/" class="block">Cookies</a>
+<body class="bg-secondary text-primary font-sans">
+  <!-- Drawer Overlay -->
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/50 hidden z-40 transition-opacity" onclick="toggleDrawer()"></div>
+  
+  <!-- Drawer Navigation -->
+  <nav id="drawer" class="fixed left-0 top-0 h-full w-64 bg-secondary border-r border-border z-50 transform -translate-x-full transition-transform duration-300">
+    <div class="p-gutter">
+      <button id="close-drawer" class="float-right text-2xl" onclick="toggleDrawer()">×</button>
+      <h2 class="font-serif text-lg font-normal clear-both mb-gutter">Everything in Perspective</h2>
+      
+      <div class="space-y-md mb-gutter">
+        <a href="/" class="block text-primary hover:underline">Home</a>
+        <a href="/magazine/articles/" class="block text-primary hover:underline">Articles</a>
+        <a href="/magazine/perspectives/" class="block text-primary hover:underline">Perspectives</a>
+        <a href="/magazine/books/" class="block text-primary hover:underline">Books</a>
+        <a href="/magazine/people/" class="block text-primary hover:underline">People</a>
+        <a href="/magazine/languages/" class="block text-primary hover:underline">Languages</a>
+      </div>
+      
+      <div class="divider my-gutter"></div>
+      
+      <div class="space-y-md text-sm">
+        <a href="/magazine/page/about/" class="block text-primary hover:underline">About</a>
+        <a href="/magazine/page/faq/" class="block text-primary hover:underline">FAQ</a>
+        <a href="/magazine/page/contact-us/" class="block text-primary hover:underline">Contact</a>
+        <a href="/magazine/page/privacy-policy/" class="block text-primary hover:underline">Privacy</a>
+        <a href="/magazine/page/terms-conditions/" class="block text-primary hover:underline">Terms</a>
+      </div>
     </div>
   </nav>
-  
+
   <!-- Header -->
-  <header class="border-b border-accent bg-secondary sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
-      <div class="flex justify-between items-start">
-        <div>
-          <a href="/" class="text-2xl sm:text-4xl font-serif font-bold tracking-tight">Everything in Perspective</a>
-          <p class="text-muted text-xs sm:text-sm mt-2">Essays on trends, context & nuance</p>
-        </div>
-        <div class="hidden lg:flex gap-8 text-sm nav-main">
-          <a href="/" class="hover:underline">Home</a>
-          <a href="/page/faq/" class="hover:underline">FAQ</a>
-          <a href="/page/contact-us/" class="hover:underline">Contact</a>
-          <a href="/page/privacy-policy/" class="hover:underline">Privacy</a>
-        </div>
-        <button class="lg:hidden nav-drawer-toggle" id="toggle-nav" aria-label="Toggle navigation">☰</button>
+  <header class="sticky top-0 z-30 bg-secondary border-b border-border">
+    <div class="max-w-container mx-auto px-gutter py-gutter">
+      <div class="flex justify-between items-center">
+        <a href="/" class="font-serif text-heading font-normal">Everything in Perspective</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex gap-column">
+          <a href="/magazine/articles/" class="text-primary hover:underline">Articles</a>
+          <a href="/magazine/perspectives/" class="text-primary hover:underline">Perspectives</a>
+          <a href="/magazine/books/" class="text-primary hover:underline">Books</a>
+        </nav>
+        
+        <!-- Mobile Menu Button -->
+        <button id="menu-button" class="lg:hidden btn btn-icon" onclick="toggleDrawer()">
+          <span class="text-2xl">☰</span>
+        </button>
       </div>
+      
+      <p class="hidden md:block text-sm text-muted mt-md">Essays on trends, context & nuance</p>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+  <main class="max-w-container mx-auto px-gutter py-2xl">
     {{content}}
   </main>
 
   <!-- Footer -->
-  <footer class="bg-accent text-secondary mt-16 sm:mt-24 py-8 sm:py-12 border-t border-primary">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+  <footer class="bg-accent text-secondary mt-2xl py-2xl border-t border-primary">
+    <div class="max-w-container mx-auto px-gutter">
+      <div class="grid gap-gutter mb-2xl" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
         <div>
-          <h4 class="font-serif font-bold mb-4">Magazine</h4>
-          <ul class="text-xs sm:text-sm space-y-2">
+          <h4 class="font-serif text-lg font-normal mb-md">Magazine</h4>
+          <ul class="text-sm space-y-sm">
             <li><a href="/" class="hover:underline">Home</a></li>
-            <li><a href="#" class="hover:underline">Archive</a></li>
-            <li><a href="#" class="hover:underline">RSS</a></li>
+            <li><a href="/magazine/articles/" class="hover:underline">Articles</a></li>
+            <li><a href="/magazine/perspectives/" class="hover:underline">Perspectives</a></li>
+            <li><a href="/magazine/books/" class="hover:underline">Books</a></li>
           </ul>
         </div>
+        
         <div>
-          <h4 class="font-serif font-bold mb-4">Brand</h4>
-          <ul class="text-xs sm:text-sm space-y-2">
-            <li><a href="/page/about/" class="hover:underline">About</a></li>
-            <li><a href="/page/faq/" class="hover:underline">FAQ</a></li>
-            <li><a href="/page/contact-us/" class="hover:underline">Contact</a></li>
+          <h4 class="font-serif text-lg font-normal mb-md">Browse</h4>
+          <ul class="text-sm space-y-sm">
+            <li><a href="/magazine/people/" class="hover:underline">People</a></li>
+            <li><a href="/magazine/languages/" class="hover:underline">Languages</a></li>
+            <li><a href="/magazine/pages/" class="hover:underline">Pages</a></li>
           </ul>
         </div>
+        
         <div>
-          <h4 class="font-serif font-bold mb-4">Legal</h4>
-          <ul class="text-xs sm:text-sm space-y-2">
-            <li><a href="/page/privacy-policy/" class="hover:underline">Privacy</a></li>
-            <li><a href="/page/terms-conditions/" class="hover:underline">Terms</a></li>
-            <li><a href="/page/cookie-policy/" class="hover:underline">Cookies</a></li>
+          <h4 class="font-serif text-lg font-normal mb-md">Brand</h4>
+          <ul class="text-sm space-y-sm">
+            <li><a href="/magazine/page/about/" class="hover:underline">About</a></li>
+            <li><a href="/magazine/page/faq/" class="hover:underline">FAQ</a></li>
+            <li><a href="/magazine/page/contact-us/" class="hover:underline">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-serif text-lg font-normal mb-md">Legal</h4>
+          <ul class="text-sm space-y-sm">
+            <li><a href="/magazine/page/privacy-policy/" class="hover:underline">Privacy</a></li>
+            <li><a href="/magazine/page/terms-conditions/" class="hover:underline">Terms</a></li>
+            <li><a href="/magazine/page/cookie-policy/" class="hover:underline">Cookies</a></li>
           </ul>
         </div>
       </div>
-      <div class="border-t border-primary pt-6 sm:pt-8 text-xs text-center text-secondary">
+      
+      <div class="border-t border-primary pt-gutter text-center text-xs">
         <p>&copy; 2026 Everything in Perspective. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- Hilltopads Ad Script -->
   <script>
-  (function(mtbsk){
-  var d = document,
-      s = d.createElement('script'),
-      l = d.scripts[d.scripts.length - 1];
-  s.settings = mtbsk || {};
-  s.src = "//mellow-habit.com/cGDg9z6Jb.2/5BllSaWJQX9GN/z/AXxZNBzjQ_4XNpSg0w3LM/DiE/3/NZDMgU5k";
-  s.async = true;
-  s.referrerPolicy = 'no-referrer-when-downgrade';
-  l.parentNode.insertBefore(s, l);
-  })({})
+    function toggleDrawer() {
+      const drawer = document.getElementById('drawer');
+      const overlay = document.getElementById('drawer-overlay');
+      drawer.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
+    
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const drawer = document.getElementById('drawer');
+        if (!drawer.classList.contains('-translate-x-full')) {
+          toggleDrawer();
+        }
+      }
+    });
   </script>
 </body>
 </html>

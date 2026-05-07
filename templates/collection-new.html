@@ -1,0 +1,133 @@
+<!-- Filter Toggle Button (Mobile) -->
+<div class="lg:hidden mb-gutter flex justify-between items-center">
+  <h1 class="font-serif text-heading font-normal">{{collectionTitle}}</h1>
+  <button id="filter-toggle" class="btn btn-secondary" onclick="toggleFilters()">
+    Filters ▼
+  </button>
+</div>
+
+<!-- Main Content Grid -->
+<div class="grid lg:grid-cols-5 gap-gutter">
+  <!-- Left Rail Filters (Desktop) / Drawer (Mobile) -->
+  <aside id="filters" class="lg:col-span-1 lg:block hidden lg:sticky lg:top-24">
+    <div class="bg-light p-gutter rounded-sm">
+      <h3 class="font-serif text-lg font-normal mb-gutter border-b border-border pb-md">Filters</h3>
+      
+      <!-- Filter Reset -->
+      <button id="reset-filters" class="btn btn-secondary w-full mb-gutter text-sm" onclick="resetFilters()">
+        Reset All
+      </button>
+      
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <h4 class="font-sans font-bold text-sm mb-md">Category</h4>
+        <label class="flex items-center gap-sm mb-md cursor-pointer">
+          <input type="checkbox" class="filter-checkbox category-filter" data-value="all" onchange="applyFilters()">
+          <span class="text-sm">All Categories</span>
+        </label>
+        {{category-filters}}
+      </div>
+      
+      <!-- Author Filter -->
+      <div class="filter-group">
+        <h4 class="font-sans font-bold text-sm mb-md">Author</h4>
+        {{author-filters}}
+      </div>
+      
+      <!-- Date Filter -->
+      <div class="filter-group">
+        <h4 class="font-sans font-bold text-sm mb-md">Date Range</h4>
+        <label class="flex items-center gap-sm mb-md cursor-pointer">
+          <input type="checkbox" class="filter-checkbox date-filter" data-value="recent" onchange="applyFilters()">
+          <span class="text-sm">Last 30 Days</span>
+        </label>
+        <label class="flex items-center gap-sm mb-md cursor-pointer">
+          <input type="checkbox" class="filter-checkbox date-filter" data-value="year" onchange="applyFilters()">
+          <span class="text-sm">This Year</span>
+        </label>
+      </div>
+      
+      <!-- Apply Button (Mobile) -->
+      <button class="lg:hidden btn btn-primary w-full mt-gutter" onclick="applyAndCloseFilters()">
+        Apply Filters
+      </button>
+    </div>
+  </aside>
+  
+  <!-- Mobile Filter Drawer Overlay -->
+  <div id="filter-overlay" class="fixed inset-0 bg-black/50 hidden z-40 lg:hidden" onclick="toggleFilters()"></div>
+  
+  <!-- Mobile Filter Drawer -->
+  <div id="filter-drawer" class="fixed left-0 top-0 h-full w-64 bg-secondary border-r border-border z-50 transform -translate-x-full transition-transform duration-300 lg:hidden">
+    <div class="p-gutter">
+      <button class="float-right text-2xl" onclick="toggleFilters()">×</button>
+      <h3 class="font-serif text-lg font-normal clear-both mb-gutter border-b border-border pb-md">Filters</h3>
+      
+      <button id="reset-filters-mobile" class="btn btn-secondary w-full mb-gutter text-sm" onclick="resetFilters()">
+        Reset All
+      </button>
+      
+      <div class="filter-group">
+        <h4 class="font-sans font-bold text-sm mb-md">Category</h4>
+        <label class="flex items-center gap-sm mb-md cursor-pointer">
+          <input type="checkbox" class="filter-checkbox category-filter" data-value="all" onchange="applyFilters()">
+          <span class="text-sm">All Categories</span>
+        </label>
+        {{category-filters}}
+      </div>
+      
+      <button class="btn btn-primary w-full mt-gutter" onclick="applyAndCloseFilters()">
+        Apply Filters
+      </button>
+    </div>
+  </div>
+  
+  <!-- Right Content Area -->
+  <div class="lg:col-span-4">
+    <!-- Sort Controls -->
+    <div class="flex justify-between items-center mb-gutter pb-gutter border-b border-border">
+      <p class="text-sm text-muted">{{itemCount}} items</p>
+      <select id="sort-select" class="text-sm px-md py-sm border border-border rounded-sm" onchange="applyFilters()">
+        <option value="recent">Recently Added</option>
+        <option value="title">Title (A-Z)</option>
+        <option value="author">Author (A-Z)</option>
+        <option value="oldest">Oldest First</option>
+      </select>
+    </div>
+    
+    <!-- Results Grid: 4 cols desktop, 2 cols tablet, 1 col mobile -->
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-gutter">
+      {{items-grid}}
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleFilters() {
+    const drawer = document.getElementById('filter-drawer');
+    const overlay = document.getElementById('filter-overlay');
+    drawer.classList.toggle('-translate-x-full');
+    overlay.classList.toggle('hidden');
+  }
+  
+  function applyAndCloseFilters() {
+    toggleFilters();
+    applyFilters();
+  }
+  
+  function resetFilters() {
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    applyFilters();
+  }
+  
+  function applyFilters() {
+    // Collect active filters
+    const activeCategories = Array.from(document.querySelectorAll('.category-filter:checked')).map(cb => cb.dataset.value);
+    const activeAuthors = Array.from(document.querySelectorAll('.author-filter:checked')).map(cb => cb.dataset.value);
+    const activeDates = Array.from(document.querySelectorAll('.date-filter:checked')).map(cb => cb.dataset.value);
+    const sortBy = document.getElementById('sort-select').value;
+    
+    // In a real implementation, this would send filters to a backend or filter DOM items
+    console.log('Filters:', { categories: activeCategories, authors: activeAuthors, dates: activeDates, sort: sortBy });
+  }
+</script>

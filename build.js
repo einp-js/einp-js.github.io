@@ -333,15 +333,28 @@ function build() {
   generateLlmsFiles(allRoutes);
   const searchIndex = generateSearchIndex(allContent);
   
-  // PHASE 4: Home page
-  const perspectives = allContent.perspectives || [];
-  const featured = perspectives.slice(0, 3).map(p => `
-    <article class="mb-12 pb-12 border-b border-accent">
-      <h3 class="font-serif text-2xl font-bold mb-2"><a href="/magazine/perspective/${p.slug}/" class="hover:underline">${p.title}</a></h3>
-      <p class="text-muted text-sm mb-4">${p.date?.toLocaleDateString() || ''} • ${p.category || 'General'}</p>
-      <a href="/magazine/perspective/${p.slug}/" class="text-primary font-bold hover:underline">Read More →</a>
-    </article>`).join('');
-  const homeHtml = homeTemplate.replace('{{featured}}', featured);
+  // PHASE 4: Home page with carousels
+  const homeNewTemplate = fs.readFileSync(path.join(TEMPLATES_DIR, 'home-new.html'), 'utf-8');
+  let homeHtml = homeNewTemplate;
+  
+  // Build carousels for each content type
+  CONTENT_REGISTRY.forEach(ct => {
+    const items = allContent[ct.folder] || [];
+    const carouselHtml = items.slice(0, 12).map(item => `
+    <div class="carousel-item snap-start flex-shrink-0 w-64 scroll-ml-gutter">
+      <div class="card h-full flex flex-col p-md">
+        <div class="mb-md flex-grow">
+          <p class="text-xs text-muted uppercase tracking-wide mb-sm">{{${ct.singular}-category}}</p>
+          <h3 class="font-serif text-lg font-normal mb-md leading-tight"><a href="/magazine/${ct.singular}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
+          <p class="text-sm text-muted">${item.description || ''}</p>
+        </div>
+        <a href="/magazine/${ct.singular}/${item.slug}/" class="text-primary font-bold text-sm hover:underline mt-auto">Read →</a>
+      </div>
+    </div>`).join('');
+    
+    homeHtml = homeHtml.replace(`{{${ct.singular}-carousel}}`, carouselHtml);
+  });
+  
   fs.writeFileSync(path.join(DOCS_DIR, 'index.html'), homeHtml);
   totalPages++;
   allRoutes.push({ label: 'Home', url: `${BASE_URL}/`, type: 'home', description: SITE_DESC });

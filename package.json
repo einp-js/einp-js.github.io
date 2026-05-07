@@ -4,19 +4,25 @@
   "description": "A magazine exploring trends in perspective",
   "main": "build.js",
   "scripts": {
-    "build": "node build.js",
-    "generate": "node build.js",
-    "dev": "node build.js && python3 -m http.server 8000 --directory docs",
+    "build:css": "tailwindcss -i ./src/input.css -o ./docs/css/style.css",
+    "build:site": "node build.js",
+    "build": "npm run build:css && npm run build:site",
+    "generate": "npm run build",
+    "dev": "npm run build && python3 -m http.server 8000 --directory docs",
     "start": "python3 -m http.server 8000 --directory docs"
   },
   "keywords": [],
   "author": "Everything in Perspective",
   "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^10.5.0",
     "front-matter": "^4.0.2",
-    "marked": "^9.0.0"
+    "marked": "^9.0.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^4.2.4"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
     "feed": "^5.2.1"
   }
 }
