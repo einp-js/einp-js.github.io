@@ -5,6 +5,7 @@
   "main": "build.js",
   "scripts": {
     "build": "node build.js",
+    "generate": "node build.js",
     "dev": "node build.js && python3 -m http.server 8000 --directory docs",
     "start": "python3 -m http.server 8000 --directory docs"
   },
@@ -14,5 +15,8 @@
   "devDependencies": {
     "front-matter": "^4.0.2",
     "marked": "^9.0.0"
+  },
+  "dependencies": {
+    "feed": "^5.2.1"
   }
 }

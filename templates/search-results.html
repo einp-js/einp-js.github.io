@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results | Everything in Perspective</title>
+  <meta name="description" content="Search articles, perspectives, and more on Everything in Perspective">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; }
+    h1, h2, h3 { font-family: Georgia, Garamond, serif; font-weight: 400; }
+  </style>
+</head>
+<body class="bg-secondary text-primary">
+  <!-- Header -->
+  <header class="border-b border-accent bg-secondary sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+      <div class="flex justify-between items-start">
+        <a href="/" class="text-2xl sm:text-4xl font-serif font-bold tracking-tight">Everything in Perspective</a>
+      </div>
+      <!-- Search Bar -->
+      <div class="mt-6">
+        <input type="text" id="search-query" placeholder="Search articles, perspectives, and more..." 
+          class="w-full px-4 py-2 border border-accent bg-secondary text-primary" 
+          value="">
+        <p id="search-status" class="text-muted text-sm mt-2"></p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <h1 class="text-3xl font-serif font-bold mb-8">Search Results</h1>
+    
+    <!-- Results Container -->
+    <div id="results-container" class="space-y-8">
+      <p class="text-muted">Enter a search term above to get started.</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-accent text-secondary mt-24 py-12 border-t border-primary">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center text-xs text-secondary">
+      <p>&copy; 2026 Everything in Perspective. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Load search index
+    const searchIndex = {{SEARCH_INDEX_JSON}};
+    const searchInput = document.getElementById('search-query');
+    const resultsContainer = document.getElementById('results-container');
+    const searchStatus = document.getElementById('search-status');
+
+    // Get query from URL params
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('q') || '';
+    searchInput.value = query;
+
+    // Search function
+    function performSearch(searchTerm) {
+      if (!searchTerm.trim()) {
+        resultsContainer.innerHTML = '<p class="text-muted">Enter a search term to get started.</p>';
+        searchStatus.textContent = '';
+        return;
+      }
+
+      const lowerQuery = searchTerm.toLowerCase();
+      const results = searchIndex.filter(item => {
+        const titleMatch = (item.title || '').toLowerCase().includes(lowerQuery);
+        const descMatch = (item.description || '').toLowerCase().includes(lowerQuery);
+        const authorMatch = (item.author || '').toLowerCase().includes(lowerQuery);
+        return titleMatch || descMatch || authorMatch;
+      });
+
+      // Update status
+      searchStatus.textContent = `Found ${results.length} result${results.length !== 1 ? 's' : ''} for "${searchTerm}"`;
+
+      // Render results
+      if (results.length === 0) {
+        resultsContainer.innerHTML = '<p class="text-muted">No results found. Try a different search term.</p>';
+      } else {
+        resultsContainer.innerHTML = results.map(item => `
+          <div class="border border-accent p-6 rounded">
+            <h2 class="font-serif text-2xl font-bold mb-2"><a href="${item.url}" class="hover:underline text-primary">${item.title}</a></h2>
+            <p class="text-muted text-sm mb-3">
+              <span class="inline-block bg-light px-2 py-1 rounded text-xs mr-2">${item.type}</span>
+              ${item.author ? `By <strong>${item.author}</strong>` : ''} 
+              ${item.date ? `• ${item.date}` : ''}
+            </p>
+            <p class="text-base mb-4">${item.description}</p>
+            <a href="${item.url}" class="text-primary font-bold hover:underline">Read →</a>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Search on input change
+    searchInput.addEventListener('keyup', (e) => {
+      performSearch(searchInput.value);
+      // Update URL
+      const newUrl = searchInput.value 
+        ? `?q=${encodeURIComponent(searchInput.value)}` 
+        : '';
+      window.history.replaceState({}, '', newUrl || location.pathname);
+    });
+
+    // Initial search if query exists
+    if (query) performSearch(query);
+  </script>
+</body>
+</html>

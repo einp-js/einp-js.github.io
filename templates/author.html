@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{authorName}} | Everything in Perspective</title>
+  <meta name="description" content="All articles and perspectives by {{authorName}}">
+  <meta property="og:title" content="{{authorName}}">
+  <meta property="og:description" content="All articles and perspectives by {{authorName}}">
+  <link rel="canonical" href="{{canonicalUrl}}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  {{jsonLdSchema}}
+</head>
+<body class="bg-secondary text-primary">
+  <header class="border-b border-accent bg-secondary">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <a href="/" class="text-3xl font-serif font-bold">Everything in Perspective</a>
+    </div>
+  </header>
+  <nav class="max-w-6xl mx-auto px-6 py-4 text-sm text-muted">
+    <a href="/" class="hover:underline">Home</a> / <span>Authors</span> / <span>{{authorName}}</span>
+  </nav>
+  <main class="max-w-6xl mx-auto px-6 py-20">
+    <div class="mb-12 pb-8 border-b border-accent">
+      <h1 class="text-4xl font-serif font-bold mb-2">{{authorName}}</h1>
+      <p class="text-muted text-lg">{{itemCount}} article{{pluralS}}</p>
+    </div>
+
+    <h2 class="text-2xl font-serif font-bold mb-8">Articles & Perspectives</h2>
+    <div class="space-y-6">
+      {{itemsList}}
+    </div>
+
+    {{relatedAuthors}}
+  </main>
+  <footer class="bg-accent text-secondary mt-24 py-12">
+    <div class="max-w-6xl mx-auto px-6 text-center text-xs text-secondary">&copy; 2026 Everything in Perspective.</div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{collectionTitle}} | Everything in Perspective</title>
+  <meta name="description" content="{{collectionDescription}}">
+  <meta property="og:title" content="{{collectionTitle}}">
+  <meta property="og:description" content="{{collectionDescription}}">
+  <link rel="canonical" href="{{canonicalUrl}}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  {{jsonLdSchema}}
+</head>
+<body class="bg-secondary text-primary">
+  <header class="border-b border-accent bg-secondary">
+    <div class="max-w-6xl mx-auto px-6 py-12">
+      <a href="/" class="text-3xl font-serif font-bold">Everything in Perspective</a>
+    </div>
+  </header>
+  <nav class="max-w-6xl mx-auto px-6 py-4 text-sm text-muted">
+    <a href="/" class="hover:underline">Home</a> / <span>{{breadcrumb}}</span>
+  </nav>
+  <main class="max-w-6xl mx-auto px-6 py-20">
+    <h1 class="text-4xl font-serif font-bold mb-4">{{collectionTitle}}</h1>
+    <p class="text-muted mb-12">{{collectionDescription}}</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">{{itemsGrid}}</div>
+    {{pagination}}
+  </main>
+  <footer class="bg-accent text-secondary mt-24 py-12">
+    <div class="max-w-6xl mx-auto px-6 text-center text-xs text-secondary">&copy; 2026 Everything in Perspective.</div>
+  </footer>
+</body>
+</html>

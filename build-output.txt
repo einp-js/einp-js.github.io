@@ -1,0 +1,33 @@
+
+> everythinginperspective@1.0.0 build
+> node build.js
+
+🔨 Building site with new architecture...
+
+📰 Generating magazine view routes...
+  ✅ 11 articles → /magazine/articles/
+  ✅ 1 perspectives → /magazine/perspectives/
+  ✅ 6 pages → /magazine/pages/
+
+🔗 Generating linked-data view routes...
+  ✅ 11 articles → /linked-data/articles/
+  ✅ 1 perspectives → /linked-data/perspectives/
+  ✅ 6 pages → /linked-data/pages/
+
+📑 Generating collection index pages...
+
+🔀 Generating alias and redirect pages...
+  ✅ Generated 168 alias/redirect pages
+
+🏠 Generating home page...
+  ✅ Home page generated
+
+🔍 Generating SEO and AI optimization assets...
+📍 Generated sitemap with 43 URLs
+🤖 Generated robots.txt
+🤖 Generated llms.txt and llms-full.txt
+📝 Generated markdown exports for AI consumption
+
+✨ Build complete in 0.09s
+📊 Generated 221 unique HTML files
+📁 Output directory: ./docs

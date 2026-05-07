@@ -1,0 +1,329 @@
+# Everything in Perspective - Full Index
+
+Canonical Origin: https://everythinginperspective.github.io/everythinginperspective_purejs
+
+## All Routes
+
+### Gemini and the AI Landscape: Beyond ChatGPT's First-Mover Advantage (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/gemini-ai-competition/
+Type: article
+Description: ChatGPT won the public narrative. But the actual AI competition is far more nuanced—and OpenAI's dominance is fragile. What Gemini, Claude, and others are doing differently.
+
+### Gemini and the AI Landscape: Beyond ChatGPT's First-Mover Advantage (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/gemini-ai-competition/
+Type: article
+Description: ChatGPT won the public narrative. But the actual AI competition is far more nuanced—and OpenAI's dominance is fragile. What Gemini, Claude, and others are doing differently.
+
+### Google Maps: How Location Data Reshapes Urban Planning, Privacy, and Power (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/google-maps-privacy-urban/
+Type: article
+Description: Google Maps promised directions. It delivered unprecedented surveillance of human movement. What location data reveals—and who has access to it.
+
+### Google Maps: How Location Data Reshapes Urban Planning, Privacy, and Power (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/google-maps-privacy-urban/
+Type: article
+Description: Google Maps promised directions. It delivered unprecedented surveillance of human movement. What location data reveals—and who has access to it.
+
+### Instagram and Mental Health: The Hidden Cost of Connection (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/instagram-mental-health/
+Type: article
+Description: Instagram promised connection. Instead, it delivered comparison, anxiety, and algorithmic manipulation. What research actually shows—and what the platform doesn't want you to know.
+
+### Instagram and Mental Health: The Hidden Cost of Connection (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/instagram-mental-health/
+Type: article
+Description: Instagram promised connection. Instead, it delivered comparison, anxiety, and algorithmic manipulation. What research actually shows—and what the platform doesn't want you to know.
+
+### Cricket's Global Obsession: Sport as Cultural Identity and Economic Power (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/crickets-global-obsession/
+Type: article
+Description: Why 3 billion people follow cricket—not as sport, but as cultural identity. How cricket became the largest sport by audience, revenue, and geopolitical influence.
+
+### Cricket's Global Obsession: Sport as Cultural Identity and Economic Power (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/crickets-global-obsession/
+Type: article
+Description: Why 3 billion people follow cricket—not as sport, but as cultural identity. How cricket became the largest sport by audience, revenue, and geopolitical influence.
+
+### E-Commerce Giants: How Amazon and Flipkart Reshaped Retail and Labor (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/ecommerce-giants-market-dominance/
+Type: article
+Description: From disruption to dominance—how Amazon and Flipkart conquered retail markets, destroyed traditional merchants, and created a new underclass of gig workers.
+
+### E-Commerce Giants: How Amazon and Flipkart Reshaped Retail and Labor (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/ecommerce-giants-market-dominance/
+Type: article
+Description: From disruption to dominance—how Amazon and Flipkart conquered retail markets, destroyed traditional merchants, and created a new underclass of gig workers.
+
+### Gold as Inflation Hedge: When Precious Metals Matter (And When They Don't) (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/gold-inflation-hedge/
+Type: article
+Description: Why gold remains valuable in uncertain economies—not as get-rich-quick, but as inflation protection. Historical data, current context, and when to actually buy.
+
+### Gold as Inflation Hedge: When Precious Metals Matter (And When They Don't) (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/gold-inflation-hedge/
+Type: article
+Description: Why gold remains valuable in uncertain economies—not as get-rich-quick, but as inflation protection. Historical data, current context, and when to actually buy.
+
+### Restaurant Culture Post-Pandemic: Community, Economics, and the Future of Dining (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/restaurant-culture-post-pandemic/
+Type: article
+Description: How restaurants transformed during pandemic lockdowns and what the post-2024 landscape reveals about urban community, labor, and local economics.
+
+### Restaurant Culture Post-Pandemic: Community, Economics, and the Future of Dining (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/restaurant-culture-post-pandemic/
+Type: article
+Description: How restaurants transformed during pandemic lockdowns and what the post-2024 landscape reveals about urban community, labor, and local economics.
+
+### Why Satta King Traps Millions: The Economics of Desperation (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/satta-king-economic-desperation/
+Type: article
+Description: Understanding satta king's hold on millions—not as vice, but as rational choice under economic pressure. The systemic failures that make illegal gambling the only escape.
+
+### Why Satta King Traps Millions: The Economics of Desperation (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/satta-king-economic-desperation/
+Type: article
+Description: Understanding satta king's hold on millions—not as vice, but as rational choice under economic pressure. The systemic failures that make illegal gambling the only escape.
+
+### Streaming Wars: How Entertainment Distribution Reshapes Culture and Labor (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/streaming-wars-entertainment/
+Type: article
+Description: From Netflix disruption to streaming saturation—how on-demand video changed entertainment economics, collapsed piracy, and created an unsustainable content arms race.
+
+### Streaming Wars: How Entertainment Distribution Reshapes Culture and Labor (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/streaming-wars-entertainment/
+Type: article
+Description: From Netflix disruption to streaming saturation—how on-demand video changed entertainment economics, collapsed piracy, and created an unsustainable content arms race.
+
+### Translation and Globalization: How Breaking Language Barriers Reshapes Power (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/translation-globalization/
+Type: article
+Description: From human translators to AI translation—how breaking language barriers reshapes economies, culture, and global power structures. What's gained, what's lost.
+
+### Translation and Globalization: How Breaking Language Barriers Reshapes Power (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/translation-globalization/
+Type: article
+Description: From human translators to AI translation—how breaking language barriers reshapes economies, culture, and global power structures. What's gained, what's lost.
+
+### The Weather Crisis: Climate Data You Need to Know (And Why You Don't) (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/article/weather-climate-data-literacy/
+Type: article
+Description: Climate change isn't a future threat—it's reshaping weather today. The data everyone ignores and why climate literacy matters more than carbon reduction rhetoric.
+
+### The Weather Crisis: Climate Data You Need to Know (And Why You Don't) (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/article/weather-climate-data-literacy/
+Type: article
+Description: Climate change isn't a future threat—it's reshaping weather today. The data everyone ignores and why climate literacy matters more than carbon reduction rhetoric.
+
+### ChatGPT in Perspective (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/perspective/chatgpt-in-perspective/
+Type: perspective
+Description: Understanding ChatGPT's impact beyond the hype—historical context, labor implications, and systemic changes.
+
+### ChatGPT in Perspective (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/perspective/chatgpt-in-perspective/
+Type: perspective
+Description: Understanding ChatGPT's impact beyond the hype—historical context, labor implications, and systemic changes.
+
+### Thinking, Fast and Slow (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/book/thinking-fast-and-slow/
+Type: book
+Description: Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.
+
+### Thinking, Fast and Slow (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/book/thinking-fast-and-slow/
+Type: book
+Description: Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.
+
+### Frequently Asked Questions (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/faq/
+Type: page
+Description: N/A
+
+### Frequently Asked Questions (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/faq/
+Type: page
+Description: N/A
+
+### Privacy Policy (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/
+Type: page
+Description: N/A
+
+### Privacy Policy (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/privacy-policy/
+Type: page
+Description: N/A
+
+### Terms & Conditions (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/terms-conditions/
+Type: page
+Description: N/A
+
+### Terms & Conditions (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/terms-conditions/
+Type: page
+Description: N/A
+
+### Cookie Policy (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/
+Type: page
+Description: N/A
+
+### Cookie Policy (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/
+Type: page
+Description: N/A
+
+### About Everything in Perspective (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/about/
+Type: page
+Description: Learn about our mission to provide context and nuance on global trends
+
+### About Everything in Perspective (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/about/
+Type: page
+Description: Learn about our mission to provide context and nuance on global trends
+
+### Contact Us (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/contact-us/
+Type: page
+Description: N/A
+
+### Contact Us (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/contact-us/
+Type: page
+Description: N/A
+
+### Daniel Kahneman (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/person/daniel-kahneman/
+Type: person
+Description: N/A
+
+### Daniel Kahneman (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/person/daniel-kahneman/
+Type: person
+Description: N/A
+
+### Spanish (Español) (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/language/spanish/
+Type: language
+Description: Spanish is a Romance language spoken by over 500 million people worldwide, making it the second-most spoken language by number of native speakers. It is the official language of Spain and most countries in Central and South America.
+
+### Spanish (Español) (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/language/spanish/
+Type: language
+Description: Spanish is a Romance language spoken by over 500 million people worldwide, making it the second-most spoken language by number of native speakers. It is the official language of Spain and most countries in Central and South America.
+
+### articles (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/articles/
+Type: collection
+Description: All articles
+
+### articles (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/articles/
+Type: collection
+Description: Linked data: articles
+
+### perspectives (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/perspectives/
+Type: collection
+Description: All perspectives
+
+### perspectives (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/perspectives/
+Type: collection
+Description: Linked data: perspectives
+
+### books (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/books/
+Type: collection
+Description: All books
+
+### books (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/books/
+Type: collection
+Description: Linked data: books
+
+### pages (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/pages/
+Type: collection
+Description: All pages
+
+### pages (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/pages/
+Type: collection
+Description: Linked data: pages
+
+### people (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/people/
+Type: collection
+Description: All people
+
+### people (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/people/
+Type: collection
+Description: Linked data: people
+
+### languages (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/languages/
+Type: collection
+Description: All languages
+
+### languages (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/languages/
+Type: collection
+Description: Linked data: languages
