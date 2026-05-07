@@ -148,18 +148,6 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: perspective
 Description: Understanding ChatGPT's impact beyond the hype—historical context, labor implications, and systemic changes.
 
-### Privacy Policy (Mag)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/
-Type: page
-Description: N/A
-
-### Privacy Policy (LD)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/privacy-policy/
-Type: page
-Description: N/A
-
 ### Terms & Conditions (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/terms-conditions/
@@ -172,18 +160,6 @@ URL: https://everythinginperspective.github.io/everythinginperspective_purejs/li
 Type: page
 Description: N/A
 
-### Cookie Policy (Mag)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/
-Type: page
-Description: N/A
-
-### Cookie Policy (LD)
-
-URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/
-Type: page
-Description: N/A
-
 ### Frequently Asked Questions (Mag)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/faq/
@@ -193,6 +169,30 @@ Description: N/A
 ### Frequently Asked Questions (LD)
 
 URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/faq/
+Type: page
+Description: N/A
+
+### Privacy Policy (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/privacy-policy/
+Type: page
+Description: N/A
+
+### Privacy Policy (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/privacy-policy/
+Type: page
+Description: N/A
+
+### Cookie Policy (Mag)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/magazine/page/cookie-policy/
+Type: page
+Description: N/A
+
+### Cookie Policy (LD)
+
+URL: https://everythinginperspective.github.io/everythinginperspective_purejs/linked-data/page/cookie-policy/
 Type: page
 Description: N/A
 
