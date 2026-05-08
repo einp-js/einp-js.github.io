@@ -114,16 +114,7 @@
     "type": "book",
     "url": "/magazine/book/thinking-fast-and-slow/",
     "author": "Daniel Kahneman",
-    "date": "2026-05-07"
-  },
-  {
-    "id": "page-privacy-policy",
-    "title": "Privacy Policy",
-    "description": "",
-    "type": "page",
-    "url": "/magazine/page/privacy-policy/",
-    "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   },
   {
     "id": "page-terms-conditions",
@@ -132,7 +123,16 @@
     "type": "page",
     "url": "/magazine/page/terms-conditions/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
+  },
+  {
+    "id": "page-privacy-policy",
+    "title": "Privacy Policy",
+    "description": "",
+    "type": "page",
+    "url": "/magazine/page/privacy-policy/",
+    "author": "Staff",
+    "date": "2026-05-08"
   },
   {
     "id": "page-faq",
@@ -141,7 +141,7 @@
     "type": "page",
     "url": "/magazine/page/faq/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   },
   {
     "id": "page-cookie-policy",
@@ -150,7 +150,7 @@
     "type": "page",
     "url": "/magazine/page/cookie-policy/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   },
   {
     "id": "page-contact-us",
@@ -159,7 +159,7 @@
     "type": "page",
     "url": "/magazine/page/contact-us/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   },
   {
     "id": "page-about",
@@ -168,7 +168,7 @@
     "type": "page",
     "url": "/magazine/page/about/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   },
   {
     "id": "person-daniel-kahneman",
@@ -177,7 +177,7 @@
     "type": "person",
     "url": "/magazine/person/daniel-kahneman/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   },
   {
     "id": "language-spanish",
@@ -186,6 +186,6 @@
     "type": "language",
     "url": "/magazine/language/spanish/",
     "author": "Staff",
-    "date": "2026-05-07"
+    "date": "2026-05-08"
   }
 ]
