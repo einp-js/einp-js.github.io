@@ -344,7 +344,7 @@ function build() {
     <div class="carousel-item snap-start flex-shrink-0 w-64 scroll-ml-gutter">
       <div class="card h-full flex flex-col p-md">
         <div class="mb-md flex-grow">
-          <p class="text-xs text-muted uppercase tracking-wide mb-sm">{{${ct.singular}-category}}</p>
+          <p class="text-xs text-muted uppercase tracking-wide mb-sm">${ct.singular}</p>
           <h3 class="font-serif text-lg font-normal mb-md leading-tight"><a href="/magazine/${ct.singular}/${item.slug}/" class="hover:underline">${item.title}</a></h3>
           <p class="text-sm text-muted">${item.description || ''}</p>
         </div>
@@ -352,7 +352,7 @@ function build() {
       </div>
     </div>`).join('');
     
-    homeHtml = homeHtml.replace(`{{${ct.singular}-carousel}}`, carouselHtml);
+    homeHtml = homeHtml.replace(`{{${ct.plural}-carousel}}`, carouselHtml);
   });
   
   fs.writeFileSync(path.join(DOCS_DIR, 'index.html'), homeHtml);

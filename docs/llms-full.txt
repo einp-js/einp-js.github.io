@@ -160,18 +160,6 @@ URL: https://einp-js.github.io//linked-data/book/thinking-fast-and-slow/
 Type: book
 Description: Explores the two systems of thought that drive the way we think—System 1, which is fast and intuitive, and System 2, which is slow and deliberate. Kahneman reveals the biases and heuristics that often lead us astray.
 
-### Terms & Conditions (Mag)
-
-URL: https://einp-js.github.io//magazine/page/terms-conditions/
-Type: page
-Description: N/A
-
-### Terms & Conditions (LD)
-
-URL: https://einp-js.github.io//linked-data/page/terms-conditions/
-Type: page
-Description: N/A
-
 ### Privacy Policy (Mag)
 
 URL: https://einp-js.github.io//magazine/page/privacy-policy/
@@ -181,6 +169,18 @@ Description: N/A
 ### Privacy Policy (LD)
 
 URL: https://einp-js.github.io//linked-data/page/privacy-policy/
+Type: page
+Description: N/A
+
+### Terms & Conditions (Mag)
+
+URL: https://einp-js.github.io//magazine/page/terms-conditions/
+Type: page
+Description: N/A
+
+### Terms & Conditions (LD)
+
+URL: https://einp-js.github.io//linked-data/page/terms-conditions/
 Type: page
 Description: N/A
 

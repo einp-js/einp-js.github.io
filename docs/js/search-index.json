@@ -117,20 +117,20 @@
     "date": "2026-05-08"
   },
   {
-    "id": "page-terms-conditions",
-    "title": "Terms & Conditions",
-    "description": "",
-    "type": "page",
-    "url": "/magazine/page/terms-conditions/",
-    "author": "Staff",
-    "date": "2026-05-08"
-  },
-  {
     "id": "page-privacy-policy",
     "title": "Privacy Policy",
     "description": "",
     "type": "page",
     "url": "/magazine/page/privacy-policy/",
+    "author": "Staff",
+    "date": "2026-05-08"
+  },
+  {
+    "id": "page-terms-conditions",
+    "title": "Terms & Conditions",
+    "description": "",
+    "type": "page",
+    "url": "/magazine/page/terms-conditions/",
     "author": "Staff",
     "date": "2026-05-08"
   },
